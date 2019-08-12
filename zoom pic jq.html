@@ -1,0 +1,130 @@
+<html>
+<head>	
+	<title>zoom pic jqury</title>
+	<meta charset="utf-8">
+	<!-- <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script> -->
+	<!-- <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script> -->
+	<script src='js/jquery-3.3.1.min.js'></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}	
+	.wrapper{
+		width: 100%;
+		height: 100%;
+		position: relative;
+		background: #f40;
+	}
+	.small{
+		width: 512px;
+		height: 384px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	.big{
+		width: 512px;
+		height: 384px;
+		position: absolute;
+		top: 0px;
+		left: 522px;		
+		overflow: hidden;
+		/*border: 1px solid #fff;*/
+	}
+
+	.small .box{
+		width: 512px;
+		height: 384px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	.small .slider{
+		width: 50%;
+		height: 50%;
+		background: rgba(255,255,255,0.4);
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		display: none;
+	}
+	.small .small-pic{
+		width: 100%;
+		height: 100%;
+	}
+	.big .big-pic{
+		width: 1024px;
+		height: 768px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrapper" class="wrapper">
+		<div class="small">	
+			<div class="box">			
+				<img class="small-pic" src="img/bg0.jpg" alt="">
+			</div>
+			<div class="slider"></div>
+		</div>
+		<div class="big">
+			<img class="big-pic" src="img/bg0.jpg" alt="">
+		</div>
+	</div>
+	<script>
+	// js-------------------------------------------------------
+	window.onload=function(){
+
+	}
+	// jquery---------------------------------------------------
+	$(document).ready(function(){
+		let oSmall=$(".small"),
+		oBig=$(".big-pic"),
+		oSlider=$(".slider");
+		oSmall.mouseover(function(){
+			oSlider.css('display','block');
+			oBig.css('display','block');
+		});
+		oSmall.mouseout(function(){
+			oSlider.css('display','none');
+			oBig.css('display','none');
+		})
+		oSmall.mousemove(function(e){
+			let left=e.clientX-oSlider.width()/2;
+			let top=e.clientY-oSlider.height()/2;
+			if(left<=0){
+				left=0;
+			}
+			if(left>=oSmall.width()-oSlider.width()){
+				left=oSmall.width()-oSlider.width();
+			}
+			if(top<=0){
+				top=0;
+			}
+			if(top>=oSmall.height()-oSlider.height()){
+				top=oSmall.height()-oSlider.height();
+			}
+			oSlider.css("left",left+'px');
+			oSlider.css("top",top+'px');
+			oBig.css("left",-left*2+'px');
+			oBig.css("top",-top*2+'px');
+		})
+	})
+	// ??????---------------------------------------------------
+	$(function(){
+		
+		
+	})	
+	</script>
+</body>
+</html>

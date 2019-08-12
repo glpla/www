@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>side bar scroll</title>
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="./css/myCss.css">
+	<script src="js/velocity.min.js"></script>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_871430_8m8hykkyrqj.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script>
+	<script src='https://unpkg.com/better-scroll/dist/bscroll.min.js'></script>
+
+	<style type="text/css">
+		.pos {
+			position: relative;
+		}
+
+		.pic-wrap {
+			/* width: 100%; */
+			height: 90vh;
+			overflow: hidden;
+			list-style: none;
+			overflow-y: scroll;
+		}
+
+		.nav-wrap {
+			height: 90vh;
+			position: absolute;
+			background: #fff;
+			right: 0;
+			top: 0;
+		}
+
+		.nav-link {
+			padding: 0.2rem 0.5rem;
+		}
+
+		a[class~="active"] {
+			color: #fff !important;
+		}
+	</style>
+</head>
+
+<body>
+	<div id='wrap' class='container'>
+		<div class="row pos">
+			<div class="col pic-wrap" data-spy="scroll" data-target="#pic-nav" data-offset="10">
+				<div v-for="(item,index) in list" :key="index">
+					<h3 :id="'class'+index" class="bg-muted">{{item.group}}</h3>
+					<div class="card" v-for="(src,index) in item.items" :key="index">
+						<img class="card-img-top" :src="src" alt="Card image cap">
+					</div>
+				</div>
+			</div>
+			<nav class="nav nav-pills flex-column nav-wrap" id="pic-nav">
+				<a class="nav-link text-dark">类</a>
+				<a class="nav-link text-dark" v-for="(item,index) in list" :href="'#class'+index" :key="index">{{item.group}}</a>
+			</nav>
+		</div>
+		<div class="row text-center">
+			<div class="col-md-12 m-2">
+				<p class='animated shake'>
+					copyrigp@glpla, 2018-12-27
+				</p>
+			</div>
+		</div>
+	</div>
+	<script>
+		let vm = new Vue({
+			el: '#wrap',
+			data: {
+				list: [{
+						group: "A",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					},
+					{
+						group: "B",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "C",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "D",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "E",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "F",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "G",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "H",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "I",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "J",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "K",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "L",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "M",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "N",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "O",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}, {
+						group: "P",
+						items: [
+							"img/rou0.jpg",
+							"img/rou1.jpg",
+							"img/rou2.jpg",
+							"img/rou3.jpg"
+						]
+					}
+				]
+			},
+			methods: {
+				navTo(e, index) {
+					console.log(this.$refs.item[index]);
+					console.log(this.$refs.box);
+					this.$refs.box.scrollToElement(this.$refs.item[index], 0);
+				}
+			},
+			computed: {}
+		})
+
+		$(function () {
+			$('.jq li').click(function () {
+				let index = $(this).index();
+				$('.cont').animate({
+					scrollTop: index * 50
+				}, 500)
+			})
+		})
+	</script>
+
+
+</body>
+
+</html>

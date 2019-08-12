@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<title>boarding jq</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+		outline: none;
+		border: none;
+		font-family: "微软雅黑";
+		color: #333;
+	}
+	body{
+		width: 100%;
+		height: 100%;
+		background: #ccc;
+	}
+	.flex{
+		display: flex;
+		flex-direction:row;
+		justify-content:space-between;
+	}	
+	.jquery{
+		width: 480px;
+		margin: 20px auto;
+	}
+	.item-wrap{
+		width: 480px;
+		height: 30px;
+		margin-top: 5px;		
+	}
+	.input{
+		width: 350px;
+		height: 30px;
+		line-height: 30px;
+		font-size: 16px;
+		padding: 0px 5px;
+		font-family: "微软雅黑";
+		color: #333;
+	}	
+	.title{
+		width: 480px;
+		height: 30px;
+		line-height: 30px;
+		color: #000;
+		font-weight: bold;		
+		font-size: 16px;
+		text-align: center;
+	}
+	.txt{
+		width: 120px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;	
+		background: #808080;
+		color: #fff;
+	}
+	.bg{
+		background: #808080;
+	}	
+	.btn{
+		width: 220px;
+		font-size: 16px;
+		background: #FF7F50;
+		text-align: center;
+		cursor: pointer;
+	}
+	.btn:hover{
+		background: #FF4500;
+		color: #fff;
+	}
+	.log{
+		width: 100%;
+		height:400px;
+		background: #fff;
+		/*超过设定的高度后,ul将自动出现滚动条*/
+		overflow:auto;
+	}
+	.list-item{
+		color: #333;
+		padding: 5px;
+	}
+	</style>
+</head>
+<body>
+	
+	<div class="jquery">
+		<div class='item-wrap'>
+			<div class="title">留下您的宝贵建议(jQuery)</div>
+		</div>
+		<form action="#">
+			<div class='item-wrap flex'>
+				<span class="txt">姓名</span>
+				<input class="input name" type="text" placeholder="姓名" required="required"/>			
+			</div>
+			<div class='item-wrap flex'>
+				<span class="txt">留言</span>
+				<input class="input msg" type="text" placeholder="留言" required="required"/>			
+			</div>
+			<div class='item-wrap flex'>
+				<button class="btn submit" type="submit">提交</button>
+				<button class="btn" type="reset">重填</button>
+			</div>
+		</form>
+		<div class='item-wrap flex'>
+			<span class="txt">历史留言</span>
+		</div>
+		<div class='item-wrap'>
+			<ul class="log"></ul>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+	$(document).ready(function(){
+		let m_array=new Map();
+		$(".submit").click(update);		
+		$(document).keydown(function (event) {
+			if (event.keyCode == 13) {
+				update();
+			}
+		});
+		function update(){
+			let nn=$(".name").val(),
+			mm=$(".msg").val();
+			if(nn != "" && mm != ""){
+				$(".log").val('');
+				m_array.set(nn,mm);
+				disMsg();				
+			}
+
+		};
+		function disMsg(){			
+			let str="";
+			for(let [key,value] of m_array){
+				str+=`
+				<li class="list-item">${key}: ${value}</li>
+				`
+			}
+			$(".log").html(str);
+		}
+	});
+	</script>
+</body>
+</html>

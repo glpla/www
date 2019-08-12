@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<title>the walking man</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+	.wrap{
+		width: 100%;
+		height: 600px;
+		background: #709;
+		display: flex;
+		justify-content:center;
+		align-items:center;
+	}
+	.man{
+		position: relative;
+		width: 80px;
+		height: 200px;
+		/*background: #ccc;*/
+	}
+	.man-head{
+		position: absolute;
+		top: 0px;
+		left: 25px;
+		width: 30px;
+		height: 30px;
+		border-radius:50%;
+		background: #fff;
+	}
+	.man-body{
+		position: absolute;
+		top: 30px;
+		left: 20px;
+		z-index: 2;
+		width: 40px;
+		height: 100px;
+		background: #fff;
+		border-radius:20px; 
+	}
+	.man-arm-front{
+		position: absolute;
+		top: 40px;
+		left:40px;
+		z-index: 3;
+		transform-origin:top;
+		animation:arm-front-swing 1s infinite linear;
+	}
+	@keyframes arm-front-swing{
+		0%{
+			transform:rotateZ(0deg);
+		}
+		50%{
+			transform:rotateZ(60deg);
+		}
+		100%{
+			transform:rotateZ(0deg);
+		}
+	}
+	.man-arm-back{
+		position: absolute;
+		top: 40px;
+		left:40px;
+		z-index: 1;
+		transform-origin:top;
+		animation:arm-back-swing 1s infinite linear;
+	}
+	@keyframes arm-back-swing{
+		0%{
+			transform:rotateZ(60deg);
+		}
+		50%{
+			transform:rotateZ(0deg);
+		}
+		100%{
+			transform:rotateZ(60deg);
+		}
+	}
+	.man-arm-front .up,
+	.man-arm-back .up{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 10px;
+		height: 40px;
+		background: #000;
+		border-radius: 10px;
+	}
+	.man-arm-front .down,
+	.man-arm-back .down{
+		position: absolute;
+		top: 40px;
+		left: 0px;
+		width: 60px;
+		height: 10px;
+		background: #000;
+		border-radius: 10px;
+	}
+	.man-leg-front{
+		position: absolute;
+		top: 110px;
+		left:35px;
+		z-index: 4;
+		transform-origin:top;
+		animation:leg-front-swing 1s infinite linear;
+	}
+	@keyframes leg-back-swing{
+		0%{
+			transform:rotateZ(-50deg);
+		}
+		50%{
+			transform:rotateZ(0deg);
+		}
+		100%{
+			transform:rotateZ(-50deg);
+		}
+	}
+	.man-leg-back{
+		position: absolute;
+		top: 110px;
+		left:35px;
+		z-index: 0;
+		transform-origin:top;
+		animation:leg-back-swing 1s infinite linear;
+	}
+	@keyframes leg-front-swing{
+		0%{
+			transform:rotateZ(0deg);
+		}
+		50%{
+			transform:rotateZ(-50deg);
+		}
+		100%{
+			transform:rotateZ(0deg);
+		}
+	}
+	.man-leg-front .up,
+	.man-leg-back .up{
+		position: absolute;
+		top: 0px;
+		left:0px;
+		width: 10px;
+		height: 40px;
+		background: #000;
+		border-radius: 10px;
+	}
+	.man-leg-front .down,
+	.man-leg-back .down{
+		position: absolute;
+		top: 40px;
+		left:0px;
+		width: 10px;
+		height: 80px;
+		background: #000;
+		border-radius: 10px;
+		transform-origin:top;
+		transform:rotateZ(40deg);
+	}
+	.man-leg-front .foot,
+	.man-leg-back .foot{
+		position: absolute;
+		top: 100px;
+		left: -40px;
+		width: 30px;
+		height: 8px;
+		background: #000;
+		border-radius: 8px;
+		transform-origin:left;
+		transform:rotateZ(40deg);
+	}
+	</style>
+</head>
+<body>
+	<div id='wrap' class='wrap'>
+		<div class="man">
+			<div class="man-head"></div>
+			<div class="man-body"></div>
+			<div class="man-arm-front">
+				<div class="up"></div>
+				<div class="down"></div>
+			</div>
+			<div class="man-arm-back">
+				<div class="up"></div>
+				<div class="down"></div>
+			</div>
+			<div class="man-leg-front">
+				<div class="up"></div>
+				<div class="down"></div>
+				<div class="foot"></div>
+			</div>
+			<div class="man-leg-back">
+				<div class="up"></div>
+				<div class="down"></div>
+				<div class="foot"></div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+	let vm = new Vue({
+		el: '#wrap',
+		data: {
+			bool:false
+		},
+		methods: {
+			test:function (){
+				this.bool=!this.bool;
+			}
+		}
+	})
+	</script>
+</body>
+</html>

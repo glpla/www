@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name='keywords' content="test 测试">
+  <meta name='description' content="demo from glpla.">
+  <title>nav slider</title>
+  <link rel="icon" href="img/glpla.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="css/init.css">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src='js/vue.js'></script>
+</head>
+<style class='my_style'>
+  #app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav {
+    width: 800px;
+    height: 35px;
+    margin: 40px auto;
+  }
+
+  .nav li {
+    float: left;
+    margin-right: 10px;
+  }
+
+  /* 不固定宽度的那部分,应由a的内容自动扩充 */
+  .nav a {
+    position: relative;
+    display: block;
+    padding-left: 7px;
+    padding-right: 25px;
+    line-height: 35px;
+    background: url(img/bg_r.png) no-repeat right;
+  }
+
+  /* 利用伪元素拼接背景时,应使用已知宽度的那一部分. */
+  /* 因为你必须指定一个宽度或有内容才可以撑开 */
+  .nav a::after {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 35px;
+    top: 0;
+    left: 0;
+    background: url(img/bg_l.png) no-repeat left;
+  }
+
+  .nav a:hover {
+    color: #fff;
+  }
+</style>
+
+
+<body>
+  <div id='app'>
+    <div class="nav">
+      <ul class='clear'>
+        <li><a href="#">54414</a></li>
+        <li><a href="#">75716</a></li>
+        <li><a href="#">75660</a></li>
+        <li><a href="#">glpla</a></li>
+        <li><a href="#">cnplaman</a></li>
+        <li><a href="#">1942194789</a></li>
+      </ul>
+    </div>
+    <div class="tips w">
+      <p>通过拼接背景实现不规则导航栏</p>
+      <p>本例采用伪元素,也可在a内增加span元素,并分别指定背景</p>
+      <p>利用伪元素拼接背景时,应使用已知宽度的那一部分.因为你必须指定一个宽度或有内容才可以撑开元素显示背景</p>
+      <p>不固定宽度的那部分,应由a的内容自动扩充</p>
+      <p>一般都是前面固定宽度,后面是根据内容自适应宽度</p>
+    </div>
+  </div>
+
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        sel: function (index) {}
+      }
+    })
+  </script>
+  <script>
+    window.onload = function () {
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

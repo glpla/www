@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>xiaomi</title>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_871430_v7p882djz6o.css">
+  <script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script>
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.5;
+      /* background-color: #92bde7; */
+      width: 100%;
+      height: 100%;
+      color: #485e74;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      /* box-sizing: border-box; */
+    }
+    li{
+      padding: 0;
+    }
+    a{
+      text-decoration: none;
+    }
+    h3{
+      margin: 0;
+    }
+    img {
+      width: 100%;
+    }
+
+    .wrapper{
+      width: 100%;
+    }
+
+    /* top nav */
+    
+    .top-nav-wrap{
+      width: 100%;
+      background: #333;
+    }
+
+    .top-nav {
+      display: flex;
+      width: 1226px;
+      margin: 0 auto;
+      justify-content: space-between;
+      height: 2.6rem;
+      line-height: 2.6rem;
+    }
+
+    .top-nav ul{
+      display: flex;
+      font-size: 0.7rem;
+      color: #b0b0b0;
+    }
+    
+    .top-nav a{
+      padding: 0rem 0.4rem; 
+      font-size: 0.7rem;
+      color: #b0b0b0;
+    }
+    .top-nav a:hover{
+      font-size: 0.7rem;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .top-nav .user a{
+      display: inline-block;
+      width: 100px;
+      text-align: center;
+    }
+    .top-nav .user a:hover{      
+      color: #ff6700;
+      background: #fff;
+    }
+
+    .top-nav .chart a{
+      display: inline-block;
+      background: #424242;
+      width: 100px;
+      text-align: center;
+    }
+    .top-nav .chart a:hover{      
+      color: #ff6700;
+      background: #fff;
+    }
+    
+    
+    /* main nav */
+    .nav-wrap{      
+      width: 1226px;
+      height: 3rem;
+      line-height: 3rem;
+      padding: 0.8rem 0 0.8rem;
+      margin: 0.8rem auto;
+      border-bottom: 1px solid #236d57;
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav-wrap a{
+      color: #333;      
+    }
+    .nav-wrap a:focus,
+    .nav-wrap a:hover{
+      color: #f40;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .logo a{
+      display: inline-block;
+      font-size: 0.7rem;
+      text-align: center;
+      width: 54px;
+      height: 54px;
+      background: #ff6700 url(./img/mi.png)
+    }
+    .logo a.logo-txt{
+      text-indent: -9999em;
+    }
+    .logo a:hover{      
+      background: #fff
+    }
+    .main-nav{      
+      display: flex;      
+    }
+    .main-nav .main-nav-li{
+      display: inline-block;
+      height: 54px;      
+      padding-left: 0.6rem;
+      padding-right: 0.6rem;
+      cursor: pointer;
+      /* background: #f40; */
+    }
+    .main-nav .main-nav-li:hover{
+      color: #ff6700;
+    }
+    .search{
+      display: flex;      
+      justify-content: center;
+      align-items: center;         
+    }
+    .search .search-input{  
+      display: block;  
+      box-sizing: border-box;           
+      width: 120px;
+      height: 32px;
+      line-height: 32px;
+      font-size: 1rem;
+      border: 1px solid #e0e0e0;
+      outline: none;      
+      padding: 0.6rem;
+      border-bottom-left-radius: 1rem;
+      border-top-left-radius: 1rem;
+    }
+    .search .search-btn{
+      display: block;  
+      width: 50px;
+      height: 32px;
+      line-height: 32px;
+      border: 1px solid #e0e0e0;
+      border-left: none;
+      outline: none;  
+      border-bottom-right-radius: 1rem;
+      border-top-right-radius: 1rem;    
+    }
+    .search .search-btn:hover{
+      background: #ff6700;
+      color: #fff;
+      cursor: pointer;
+    }
+    .search .search-btn span{
+      font-size: 1.6rem;
+    }
+    .cont{
+      width: 1226px;
+      margin: 0 auto;
+    }
+    .nav-down-wrap{
+      box-sizing: border-box;
+      position: absolute;
+      left:0;
+      width: 1226px;
+      padding: 1rem 0 0;
+      background: rgba(255, 0, 0,0);
+      border-bottom: 1px solid #236d57;
+      display: none;
+    }
+    .nav-down-cont{
+      background: #fff;
+      display: flex;
+      padding: 1rem 0 1rem;
+      justify-content: space-between;
+    }
+    .nav-down-cont .nav-down-item h3{
+      color: #236d57;
+    }
+    .nav-down-cont .nav-down-item li{
+      height: 30px;
+    }
+    .nav-down-cont .nav-down-item li:nth-child(odd){
+      color: #333;
+      font-size:1.4rem;
+    }
+    .nav-down-cont .nav-down-item li:nth-child(even){
+      color: #666;
+      font-size:0.7rem;
+      margin-bottom: 1rem;
+    }
+    .nav-down-cont .nav-down-item li:hover{
+      color: #13aa52;
+    }
+    .title{
+      display: inline-block;
+      width: 100%;
+      height: 3rem;
+      line-height: 3rem;
+      background: #f4f5f6;
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      padding: 1rem 0;
+    }
+
+    .time{
+      display: flex;
+    }
+    .time .phase{
+      width: 20%;
+      height: 4rem;
+      line-height: 4rem;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }    
+    .time .active{
+      background: #ff6700;      
+    }
+    .time em{      
+      font-style: normal;
+    }
+    .time span{      
+      font-style: normal;
+      font-size: 0.7rem;
+      color: #fff;
+    }
+    .time span em{
+      display: inline-block; 
+      color: #fff;
+      line-height: 1rem;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .goods{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .goods li{
+      width: 300px;
+      height: 120px;
+      background: #e0e0e0;
+      margin-bottom: 0.4rem;
+    }
+    .test{
+      width: 100%;
+      height: 100px;
+      background: #424242;
+    }
+    .test .box{
+      width: 80%;
+      height: 60px;
+      background: #ff6700;
+    }
+    .test .box .circle{
+      width: 80%;
+      height: 40px;
+      background: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper" id='app'>
+    <div class="top-nav-wrap">
+      <div class="top-nav">
+        <ul class='top-nav-ul'>
+          <li><a href="#">小米商城</a></li>
+          <li><a href="#">MIUI</a></li>
+          <li><a href="#">IoT</a></li>
+          <li><a href="#">云服务</a></li>
+          <li><a href="#">金融</a></li>
+          <li><a href="#">有品</a></li>
+          <li><a href="#">小爱开放平台</a></li>
+          <li><a href="#">政企服务</a></li>
+          <li><a href="#">资质证照</a></li>
+          <li><a href="#">协议规则</a></li>
+          <li><a href="#">下载app</a></li>
+          <li><a href="#">Select Region</a></li>
+        </ul>
+        <ul class='top-nav-ul'>
+          <li class='user'><a href="#">大树 <span class="iconfont icon-unfold"></span></a></li>
+          <li><a href="#">消息通知</a></li>
+          <li><a href="#">我的订单</a></li>
+          <li class='chart'>
+            <a href="#">
+              <span class="iconfont icon-tianmaochaoshigouwuche"></span> 购物车<span class='chart-num'>(0)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="nav-wrap">
+      <div class="logo">
+        <a href="#" class='logo-txt'>小米官网</a>
+      </div>
+
+      <ul class='main-nav'>
+        <li class='main-nav-li'>
+          小米手机
+          <div class="nav-down-wrap">
+            <div class="nav-down-cont">
+              <div class='nav-down-item'>
+                <h3>CLOUD</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>CLOUD</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>CLOUD</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>CLOUD</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class='main-nav-li'>
+          红米
+          <div class="nav-down-wrap">
+            <div class="nav-down-cont">
+              <div class='nav-down-item'>
+                <h3>红米</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>红米</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>红米</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>红米</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class='main-nav-li'>
+          电视
+          <div class="nav-down-wrap">
+            <div class="nav-down-cont">
+              <div class='nav-down-item'>
+                <h3>电视</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>电视</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>电视</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>电视</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class='main-nav-li'>
+          笔记本
+          <div class="nav-down-wrap">
+            <div class="nav-down-cont">
+              <div class='nav-down-item'>
+                <h3>笔记本</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>笔记本</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>笔记本</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+              <div class='nav-down-item'>
+                <h3>笔记本</h3>
+                <ul>
+                  <li>MongoDB Atlas</li>
+                  <li>Fully managed cloud database</li>
+                  <li>MongoDB Stitch</li>
+                  <li>Serverless platform</li>
+                  <li>MongoDB Charts</li>
+                  <li>Native visualization for MongoDB data</li>
+                  <li>Cloud Migration</li>
+                  <li>Move to the cloud with minimal downtime</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class='main-nav-li'>家电</li>
+        <li class='main-nav-li'>新品</li>
+        <li class='main-nav-li'>路由器</li>
+        <li class='main-nav-li'>智能硬件</li>
+        <li class='main-nav-li'>服务</li>
+        <li class='main-nav-li'>社区</li>
+      </ul>
+
+      <div class="search">
+        <input class='search-input' type="text" placeholder="js">
+        <button class='search-btn' type="submit">
+          <span class="iconfont icon-search"></span>
+        </button>
+      </div>
+    </div>
+
+
+    <div class="cont">
+      <div class="title">小米闪购</div>
+    </div>
+
+    <div class="cont">
+      <ul class="time">
+        <li class="phase active" @click='selNav'><em>22:00</em> <span><em>正在进行<br>距离结束还有00:00</em></span></li>
+        <li class="phase" @click='selNav'><em>02:00</em> <span>即将开始</span></li>
+        <li class="phase" @click='selNav'><em>04:00</em> <span>即将开始</span></li>
+        <li class="phase" @click='selNav'><em>06:00</em> <span>即将开始</span></li>
+        <li class="phase" @click='selNav'><em>08:00</em> <span>即将开始</span></li>
+      </ul>
+    </div>
+    <div class="cont">
+      <ul class="goods">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+      </ul>
+    </div>
+
+
+  </div>
+
+  <script>
+    // nav script:
+    let tarDown = document.querySelector('.main-nav')
+    let downTop = tarDown.clientHeight + tarDown.offsetTop
+    let tarLeft = document.querySelector('.nav-wrap')
+    let leftTop = tarLeft.offsetLeft
+    console.log(leftTop)
+    let nav = document.querySelectorAll('.main-nav-li')
+    let down = document.querySelectorAll('.nav-down-wrap')
+
+    nav.forEach((item, index) => {
+      item.addEventListener('mouseover', disDown)
+      item.addEventListener('mouseout', hideDown)
+      item.index = index
+    })
+
+    function disDown() {
+      down[this.index].style.display = 'block'
+      down[this.index].style.top = downTop + 'px'
+      down[this.index].style.left = leftTop + 'px'
+      let tmp = down[this.index].querySelector('.nav-down-cont')
+      // tmp.style.top = 0
+      tmp.classList.add('animated', 'fadeIn')
+    }
+
+    function hideDown() {
+      down[this.index].style.display = 'none'
+    }
+
+    // time script
+    // let phase = document.querySelector('.time')
+    // phase.addEventListener('click', (e) => {
+    //   // console.log(e.target);
+    //   console.log(e.target.nodeName);
+    //   if (e.target && e.target.nodeName.toUpperCase() == "LI") {
+    //     console.log("List item: " + e.target);
+    //   }
+    // })
+
+    let phase = document.querySelector('.time').querySelectorAll('li')
+    // way1:直接传参数进去.要先定义selNav再使用.
+    // const selNav = cur => () => {
+    //   phase.forEach((item) => {
+    //     cur == item ? item.classList.add('active') : item.classList.remove('active')
+    //   })
+    // }
+    // phase.forEach((item) => {
+    //   item.addEventListener('click', selNav(item))
+    // })
+
+    // way2:
+    phase.forEach((item) => {
+      item.addEventListener('click', selNav)
+    })
+
+    function selNav(e) {
+      // let cur = this;
+      let cur = e.currentTarget;
+      phase.forEach((item) => {
+        cur == item ? item.classList.add('active') : item.classList.remove('active')
+      })
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>transform demo</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/vue.min.js"></script>
+</head>
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #999;
+  }
+
+  .wrap {
+    position: relative;
+    margin: 20px auto;
+    z-index: 0;
+  }
+
+  .tips {
+    padding: 10px;
+    background-color: #fb577e;
+    box-shadow: 0 0 4px #fff;
+  }
+
+  .btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background-color: #fb577e;
+    border-radius: 50%;
+    border: 1px solid #999;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    width: 48px;
+    height: 48px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #999;
+    z-index: -1;
+  }
+
+  .btn::after {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 36px;
+    width: 4px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .btn:hover:after {
+    top: 0px;
+    opacity: 1;
+  }
+
+  .page {
+    width: 400px;
+    height: 300px;
+    margin: 40px auto;
+    transform: rotate(10deg);
+  }
+
+  .cont {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    padding: 10px;
+    background-color: #fb577e;
+  }
+
+  .cont::after,
+  .cont::before {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    width: 30%;
+    height: 10%;
+    background-color: #666;
+    box-shadow: 0 6px 20px 0px rgba(0, 0, 0, 1);
+    z-index: -1;
+  }
+
+  .cont::after {
+    right: 0;
+    transform-origin: right bottom;
+    transform: skew(15deg) rotate(4deg);
+  }
+
+  .cont::before {
+    left: 0;
+    transform-origin: left bottom;
+    transform: skew(-15deg) rotate(-4deg);
+  }
+
+  .border-transform {
+    transform: rotate(-12deg);
+  }
+
+  .box {
+    position: relative;
+    width: 800px;
+    padding: 10px;
+    background-color: #fb577e;
+    border: 1px solid #fff;
+    margin: 80px auto;
+  }
+
+  .box::before,
+  .box::after {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 10%;
+    background-color: #fff;
+    bottom: 0px;
+    box-shadow: 0px 0px 20px #000, 0px 0px 10px #000;
+    z-index: -1;
+  }
+
+  .box::before {
+    left: 0;
+    transform: translateY(-6px) rotate(-2deg) skew(-2deg);
+  }
+
+  .box::after {
+    right: 0;
+    transform: translateY(-6px) rotate(2deg) skew(2deg);
+  }
+</style>
+
+<body>
+  <div class="wrap">
+    <div class='btn'>G</div>
+    <div class="tips">
+      <p>Tips</p>
+      <p>在el外单独再加1层容器,可解决伪元素背景和其他元素背景的冲突问题</p>
+    </div>
+  </div>
+  <div class="page">
+    <div class="cont">
+      <p>Tips</p>
+      <ul>
+        <li>el的::after和::before是el的子元素;</li>
+        <li>子元素需设置z-index为负才可以隐藏到父级el之下;而el不需设置z-index;</li>
+        <li>请不要直接在el上使用transform,会破坏原有的堆叠顺序.解决的方法是在el外单独再加1层容器,对该容器进行transform.</li>
+        <li>transform时可根据需要设置origin.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-transform">
+    <div class="box">
+      <p>Tips</p>
+      <p>带边框的transform Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias vitae sit est ipsam id
+        corrupti quia ea! Dolores, exercitationem neque.</p>
+    </div>
+  </div>
+</body>
+<script>
+  window.onload = function () {
+
+
+
+  }
+</script>
+
+</html>

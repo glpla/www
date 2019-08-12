@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>nav demo</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style>
+  html,
+  body {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .nav {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    background-color: #e64346;
+  }
+
+  .nav .item {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: 0.2s all ease;
+  }
+
+  .nav .item::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 100%;
+    width: 50%;
+    height: 2px;
+    background-color: #e64346;
+    transition: 0.4s all ease;
+  }
+
+  .nav .item:hover {
+    background-color: #a40000;
+  }
+
+  .nav .item:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  .nav .item:hover~.item::after {
+    left: 0;
+  }
+
+  .dom {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    background-color: #e64346;
+  }
+
+  .dom li {
+    float: left;
+    height: 100%;
+  }
+
+  .dom li .item {
+    position: relative;
+    height: 100%;
+    line-height: 40px;
+    padding: 0 20px;
+    color: #fff;
+  }
+
+  .dom li .item::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    bottom: -4px;
+    width: 50%;
+    height: 2px;
+    background-color: #e64346;
+    transition: 0.4s all ease;
+    /* z-index: -1; */
+  }
+
+  .dom li .item:hover {
+    background-color: #a40000;
+  }
+
+  .dom li .item:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  .dom li .item:hover+::after {
+    left: 0;
+  }
+</style>
+
+<body>
+  <ul class="nav">
+    <li class='item'><a href="#">glboy</a></li>
+    <li class='item'><a href="#">cnplaman</a></li>
+    <li class='item'><a href="#">glpla</a></li>
+    <li class='item'><a href="#">54414</a></li>
+    <li class='item'><a href="#">75716</a></li>
+    <li class='item'><a href="#">75660</a></li>
+  </ul>
+  <ul class="dom">
+    <li>
+      <div class='item'>glboy</div>
+    </li>
+    <li>
+      <div class='item'>cnplaman</div>
+    </li>
+    <li>
+      <div class='item'>glpla</div>
+    </li>
+    <li>
+      <div class='item'>54414</div>
+    </li>
+    <li>
+      <div class='item'>75716</div>
+    </li>
+    <li>
+      <div class='item'>75660</div>
+    </li>
+  </ul>
+</body>
+<script>
+</script>
+
+</html>

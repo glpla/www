@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css layout</title>
+
+  <!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous"> -->
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <!-- <link href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" rel="stylesheet"> -->
+  <!-- <script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script> -->
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.5;
+      background-color: #92bde7;
+      width: 100%;
+      height: 100%;
+      /* color: #485e74; */
+    }
+
+    ul {
+      list-style: none;
+      /* padding: 0; */
+    }
+
+    .user {
+      display: flex;
+      padding: 5px;
+      margin-bottom: 10px;
+      background: #f3f6f9;
+    }
+
+    .user img {
+      width: 30%;
+      height: 30%;
+    }
+
+    .user ul {
+      padding-left: 2rem;
+    }
+
+    .user span {
+      display: inline-block;
+      padding-left: 2rem;
+    }
+
+    .user span em {
+      font-style: normal;
+    }
+
+    .user .txt {
+      padding-left: 2rem;
+      height: 100%;
+    }
+
+    .user .txt p {
+      margin: 0;
+    }
+
+    .vertical {
+      width: 100%;
+      height: 400px;
+      background: #079;
+    }
+
+    .txt {
+      width: 100%;
+      height: 30px;
+      margin-top: 10px;
+      background-color: #fff;
+      line-height: 30px;
+      overflow: hidden;
+    }
+
+    .txt p {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .btn-wrap {
+      display: flex;
+      justify-content: center;
+      border: 1px solid #709;
+      border-radius: 10px;
+      overflow: hidden;
+      line-height: 30px;
+    }
+
+    .btn-wrap .left,
+    .btn-wrap .right {
+      width: 50%;
+      text-align: center;
+
+    }
+
+    .btn-wrap .left {
+      color: #fff;
+      background: #709;
+
+    }
+
+    .btn-wrap .right {
+      background: #fff;
+      color: #709;
+    }
+
+    .input-wrap {
+      background: #907;
+      border: 1px solid #907;
+      border-radius: 10px;
+      display: flex;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .input-wrap input {
+      width: 50%;
+      border: none;
+      outline: none;
+      color: #907;
+      padding-left: 6px;
+      padding-right: 6px;
+      text-align: center;
+    }
+
+    .input-wrap div {
+      width: 50%;
+      color: #fff;
+    }
+
+    .price-wrap {
+      display: flex;
+      justify-content: center;
+      /* border: 1px solid #f40; */
+      padding: 1px;
+      background: #f40;
+      text-align: center;
+    }
+
+    .price-wrap .old {
+      width: 50%;
+      color: #fff;
+      text-decoration: line-through
+    }
+
+    .price-wrap .new {
+      width: 50%;
+      color: #f40;
+      background: #fff;
+    }
+
+    .cup {
+      display: flex;
+    }
+
+    .cup .left {
+      width: 100px;
+
+    }
+
+    .cup .middle {
+      flex-grow: 1;
+    }
+
+    .cup .right {
+      width: 80px;
+    }
+
+    .title {
+      text-align: center;
+    }
+
+    .title h1 {
+      position: relative;
+      height: 3rem;
+      background: #f40;
+      font-size: 2rem;
+      line-height: 3rem;
+    }
+
+    .title h1::before,
+    .title h1::after {
+      content: '';
+      position: absolute;
+      background-color: #333;
+      height: 0.1rem;
+      width: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .title h1::before {
+      left: 21rem;
+    }
+
+    .title h1::after {
+      right: 21rem;
+    }
+
+    .before-img {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      height: 300px;
+      text-align: center;
+    }
+
+    .before-img::before {
+      content: url(./img/rou.jpg);
+    }
+
+    .user-border-4 {
+      width: 100px;
+      height: 100px;
+      background: #f66;
+      margin: 10px auto;
+      border-radius: 50%;
+      font-size: 0.6rem;
+    }
+
+    .user-border-1 {
+      width: 100px;
+      height: 100px;
+      background: #f66;
+      margin: 10px auto;
+      border-top-left-radius: 50%;
+      font-size: 0.6rem;
+    }
+
+    .user-border-xy {
+      width: 100px;
+      height: 100px;
+      background: #f66;
+      margin: 10px auto;
+      border-top-left-radius: 50% 30%;
+      font-size: 0.6rem;
+    }
+
+    .user-border-left {
+      width: 50px;
+      height: 100px;
+      background: #f66;
+      margin: 10px auto;
+      border-radius: 100px 0% 0% 100px;
+      font-size: 0.6rem;
+    }
+
+    .user-border-up {
+      width: 100px;
+      height: 50px;
+      background: #f66;
+      margin: 10px auto;
+      border-radius: 100px 100px 0 0;
+      font-size: 0.6rem;
+    }
+
+    .user-border-arrow {
+      width: 0px;
+      height: 0px;
+      margin: 10px auto;
+      border-top: 50px solid transparent;
+      border-right: 50px solid #079;
+      border-bottom: 50px solid transparent;
+      border-left: 50px solid transparent;
+      font-size: 0.6rem;
+    }
+
+    .user-border-dia {
+      position: relative;
+      width: 300px;
+      height: 50px;
+      background: #f66;
+      margin: 10px auto;
+      border-radius: 8px;
+      font-size: 0.6rem;
+    }
+
+    .user-border-dia::before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-right: 10px solid #f66;
+      border-bottom: 10px solid transparent;
+      border-left: 10px solid transparent;
+      position: absolute;
+      left: -20px;
+      top: 15px;
+    }
+
+    .user-border-diamond {
+      width: 100px;
+      height: 100px;
+      background: #f66;
+      margin: 10px auto;
+      transform: rotateZ(45deg);
+    }
+
+    .user-border-star {
+      position: relative;
+      width: 0;
+      height: 0;
+      border-top: 80px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 80px solid #f66;
+      border-left: 30px solid transparent;
+      left: 100px;
+      top: -60px;
+    }
+
+    .user-border-star::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 70px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid #079;
+      border-left: 100px solid transparent;
+      transform: rotateZ(35deg);
+      left: -70px;
+      top: 10px;
+    }
+
+    .user-border-star::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 70px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid #907;
+      border-left: 100px solid transparent;
+      transform: rotateZ(-35deg);
+      left: -130px;
+      top: 10px;
+    }
+
+    .user-border-star6 {
+      width: 0;
+      height: 0;
+      position: relative;
+    }
+
+    .user-border-star6::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 100px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid #907;
+      border-left: 50px solid transparent;
+      top: 0px;
+    }
+
+    .user-border-star6::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 100px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 100px solid #907;
+      border-left: 50px solid transparent;
+      transform: rotateX(180deg);
+      top: 140px;
+    }
+
+    .user-border-taiji {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background: #fff;
+      margin: 20px auto;
+      border-radius: 50%;
+      border-left: 100px solid #000;
+    }
+
+    .user-border-taiji::before {
+      content: '';
+      display: block;
+      position: absolute;
+      box-sizing: content-box;
+      width: 50px;
+      height: 50px;
+      background: #000;
+      border-radius: 50%;
+      border: 25px solid #fff;
+      left: -50px;
+    }
+
+    .user-border-taiji::after {
+      content: '';
+      display: block;
+      position: absolute;
+      box-sizing: content-box;
+      width: 50px;
+      height: 50px;
+      background: #fff;
+      border-radius: 50%;
+      border: 25px solid #000;
+      left: -50px;
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id='app'>
+    <div class="row">
+      <div class="col text-light text-center py-2">用任何框架都要注意:很多元素的属性可能已被篡改.原生css的效果未必在框架里是正常的</div>
+    </div>
+    <div class="row text-center">
+      <div class="col-4 border">
+        <div class="user-border-4"></div>
+        <div>border-radius: 50%;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-1"></div>
+        <div>border-top-left-radius: 50%;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-xy"></div>
+        <div>border-top-left-radius: 50% 30%;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-left"></div>
+        <div>width: 50px; height: 100px;</div>
+        <div>border-radius: 100px 0 0 100px;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-up"></div>
+        <div>width: 100px; height: 50px;</div>
+        <div>border-radius: 100px 100px 0 0;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-triangle"></div>
+        <div>width: 0px; height: 0px;</div>
+        <div>border-top:50px solid #f66;</div>
+        <div>border-right:50px solid #079;</div>
+        <div>border-bottom:50px solid #907;</div>
+        <div>border-left:50px solid #090;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-arrow"></div>
+        <div>width: 0px; height: 0px;</div>
+        <div>border-top:50px solid transparent;</div>
+        <div>border-right:50px solid #079;</div>
+        <div>border-bottom:50px solid transparent;</div>
+        <div>border-left:50px solid transparent;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-dia"></div>
+        <div>width: 200px; height: 50px;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-diamond"></div>
+        <div>注意transform的兼容性</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-star"></div>
+        <div style="margin-top:60px;">注意transform的兼容性.3个三角旋转拼接而成</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-star6"></div>
+        <div style="margin-top:60px;">注意transform的兼容性.2个三角翻转拼接而成</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-egg"></div>
+        <div>border-radius新用法 X/Y</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-half"></div>
+        <div>width: 200px;</div>
+        <div>height: 200px;</div>
+        <div>border-radius: 50%;</div>
+        <div>border-left: 100px solid #000;</div>
+      </div>
+      <div class="col-4 border">
+        <div class="user-border-taiji"></div>
+      </div>
+    </div>
+
+    <div class="col">
+      <p class="before-img"><br>Lorem ipsum dolor sit amet</p>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col">
+      <div class="user">
+        <img src="./img/01.jpeg" alt="">
+        <ul>
+          <li>
+            <h3>布局要点</h3>
+          </li>
+          <li>父级为flex</li>
+          <li>左img右ul</li>
+          <li style="color:#f40;">推荐:10分</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col">
+      <div class="user">
+        <img src="./img/01.jpeg" alt="">
+        <div class='txt'>
+          <h3>布局要点</h3>
+          <p>父级为flex</p>
+          <p>左img右div</p>
+          <p>右侧内部元素为h3和p.取消p默认margin</p>
+          <p style="color:#f40;">推荐:8分</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col">
+      <div class="user">
+        <img src="./img/01.jpeg" alt="">
+        <span>
+          <h3>布局要点</h3><br>
+          <em>父级为flex</em><br>
+          <em>左img右span:元素span设为inline-block</em><br>
+          <em>右侧内部元素为em,以br分隔各项.设斜体为正常</em><br>
+          <em style="color:#f40;">推荐:3分</em>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col cup">
+      <div class="left bg-info">left</div>
+      <div class="middle bg-success">middle</div>
+      <div class="right bg-warning">right</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="title">
+        <h1>welcomt to AnYang city</h1>
+        <p>my hometown</p>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    console.log(1 != 1)
+  </script>
+</body>
+
+</html>

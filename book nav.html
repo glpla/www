@@ -1,0 +1,108 @@
+<html>
+<head>	
+	<title>book nav</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
+	}
+	.wrap{
+		width: 100%;
+		height: 100%;
+		background: #c9f;
+	}
+	.book{
+		width: 1024px;
+		height: 470px;
+		/*background: #eee;*/
+		margin: 0 auto;
+	}
+	.title{
+		width: 100%;
+		height: 50px;
+		/*background: #fff;*/
+		line-height: 50px;
+		font-size: 24px;
+		text-align: center;
+		color: #fff;
+	}
+	.cont-wrap{
+		width: 100%;
+		height: 420px;
+		/*background: #f40;*/
+	}
+	.cont{
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content:space-around;
+		align-items:center;
+	}
+	.cover{
+		width: 180px;
+		height: 320px;
+		border: 5px solid #fff;
+		transition:0.5s;
+	}
+	.cover.on{
+		transform:scale(1.2);
+	}
+	.cover.off{
+		transform:scale(1);
+	}
+	.cont li img{
+		width: 100%;
+		height: 100%;
+	}
+	</style>
+</head>
+<body>
+	<div id='wrap' class="wrap">
+		<div class="book">
+			<div class="title">{{books[titleIndex].title}}</div>
+			<div class="cont-wrap">
+				<ul class='cont'>
+					<li class='cover' v-for='(item,index) in books' v-on:mouseover='mOver(index)' v-on:mouseout='mOut(index)' v-bind:class="(titleIndex==index && mouseFlag)?'on':'off' ">
+						<img v-bind:src="item.src" alt="">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+	let vm = new Vue({
+		el: '#wrap',
+		data: {
+			titleIndex:0,
+			mouseFlag:false,
+			books:[{
+				title: '54414',
+				src: 'img/c0.jpg'
+			},{
+				title: '75716',
+				src: 'img/c1.jpg'
+			},{
+				title: '75660',
+				src: 'img/c2.jpg'
+			},{
+				title: 'glpla',
+				src: 'img/c3.jpg'
+			}]
+		},
+		methods: {
+			mOver:function(num){
+				this.titleIndex=num;
+				this.mouseFlag=true;
+			},
+			mOut:function(num){				
+				this.mouseFlag=false
+			}
+		}
+	})
+	</script>
+</body>
+</html>

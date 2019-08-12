@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+
+<head>
+  <!--声明当前页面编码集(中文编码<gbk,gb2312>,国际编码<utf-8>)-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="keywords" content="关键词,关键词">
+  <meta name="description" content="">
+  <title> html </title>
+  <style type="text/css">
+    * {
+      padding: 0px;
+      margin: 0px;
+    }
+
+    ul li {
+      list-style: none;
+      float: left;
+    }
+
+    /*box start*/
+    #box {
+      width: 700px;
+      height: 300px;
+      margin: 50px auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #imgbox {
+      width: 1000%;
+      position: absolute;
+    }
+
+    #imgbox li img {
+      width: 700px;
+      height: 300px;
+      vertical-align: top;
+    }
+
+    #list {
+      width: 120px;
+      height: 30px;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      margin-left: -60px;
+    }
+
+    #list li {
+      width: 20px;
+      height: 20px;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      line-height: 20px;
+      border-radius: 50%;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    #list .on {
+      background: gray;
+    }
+
+    /*box end*/
+  </style>
+</head>
+
+<body>
+  <!--box start-->
+  <div id="box">
+    <ul id="imgbox">
+      <li><img src="image/1.jpg" /></li>
+      <li><img src="image/2.jpg" /></li>
+      <li><img src="image/3.jpg" /></li>
+      <li><img src="image/4.jpg" /></li>
+    </ul>
+
+    <ul id="list">
+      <li class="on">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </div>
+  <!--box end-->
+
+  <!--引入速度版运动框架（位移/折叠/透明）-->
+  <script src="run.js"></script>
+  <script>
+    window.onload = function () {
+      //获取list下所有的孩子元素
+      var listDoms = $("list").children;
+      //获取imgBox下所有的孩子元素
+      var imgDoms = $("imgbox").children;
+      var width = imgDoms[0].offsetWidth;
+      var len = imgDoms.length;
+      var timer = null;
+      var cindex = 0;
+      //遍历所有的子元素，动态绑定事件
+      for (var i = 0; i < listDoms.length; i++) {
+        listDoms[i].index = i; //动态绑定属性
+        listDoms[i].onmouseover = function () {
+          for (var i = 0; i < listDoms.length; i++) {
+            listDoms[i].className = ""; //清空所有样式
+            imgDoms[i].removeAttribute("style");
+          }
+          this.className = "on"; //当前点击的li绑定样式
+          Run($("imgbox"), {
+            left: -width * this.index
+          });
+          cindex = this.index;
+          cindex2 = this.index;
+        };
+      }
+
+
+      timer = setInterval(playBanner, 1500);
+      //执行动画banner
+      var cindex2 = 0;
+
+      function playBanner() {
+        if (cindex == 0) {
+          imgDoms[0].style.position = "static";
+          $("imgbox").style.left = 0;
+          cindex2 = 0;
+        }
+        if (cindex == len - 1) {
+          imgDoms[0].style.position = "relative";
+          imgDoms[0].style.left = len * width + "px";
+          cindex = 0;
+        } else {
+          cindex++;
+        }
+        cindex2++;
+        //console.log(cindex);
+        for (var i = 0; i < listDoms.length; i++) {
+          listDoms[i].className = ""; //清空所有样式
+        }
+        listDoms[cindex].className = "on";
+        Run($("imgbox"), {
+          left: -width * cindex2
+        });
+      };
+
+      //鼠标放入清除动画
+      $("box").onmouseover = function () {
+        clearInterval(timer);
+      };
+
+      $("box").onmouseout = function () {
+        timer = setInterval(playBanner, 1500);
+      }
+    }
+  </script>
+</body>
+
+</html>

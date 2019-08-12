@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>canvas</title>
+	<link rel="icon" href="img/demo.ico">
+	<link rel="stylesheet" href="js/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<!-- <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script> -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<!-- <script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script> -->
+	<script src="js/vue.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://unpkg.com/vant/lib/index.css"> -->
+
+
+	<style>
+		.center{
+			width: 100%;
+			height: 30px;
+			margin: 20px auto;
+		}		
+		.dropdown-menu{
+			text-align: center;
+			/* min-width: 93.84px; */
+		}
+		.input-group{
+			display: flex;
+			justify-content: center;
+			left: -25px;
+		}
+		.input-group .form-control{
+			width: 50%;			
+		}
+		
+	</style>
+
+</head>
+
+<body>
+	<div class="container" id='app'>
+
+		<div class="text-center">
+			<div class="btn-group">
+				<button type='button' class='btn btn-info'>鼠标跟随</button>
+				<button type='button' class='btn btn-info'>屏幕随机</button>
+				<div class="btn-group">
+					<button type="button" class='btn btn-info' data-toggle="dropdown">
+						指定颜色
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li>
+							<div class="input-group">
+								<input type="color" class='form-control'>
+								<span class='input-group-btn'>
+									<button type='button' class='btn btn-info'>确定</button>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<button type='button' class='btn btn-info'>随机颜色</button>
+				<div class="btn-group">
+					<button type="button" class='btn btn-info' data-toggle="dropdown">
+						指定大小
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="#">4</a></li>
+						<li><a href="#">6</a></li>
+						<li><a href="#">8</a></li>
+						<li>
+							<div class="input-group flex">
+								<input type="number" class='form-control text-center' min="1" max="9" value='5'>
+								<span class='input-group-btn'>
+									<button type='button' class='btn btn-info'>确定</button>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<button type='button' class='btn btn-info'>随机大小</button>
+				<button type='button' class='btn btn-info'>清除画布</button>
+			</div>
+			<canvas id='ball' width='800' height='450'></canvas>
+			<canvas id='code' width='800' height='30'></canvas>
+			<canvas id='taiji' width='800' height='300'></canvas>
+			<canvas id='rain' width='800' height='300'></canvas>
+			<canvas id='test' width='800' height='300'></canvas>
+		</div>
+
+	</div>
+
+
+
+
+	<script>
+		let vm = new Vue({
+			el: "#app",
+			data: {
+				tips: 'hi,man.'
+			},
+			computed: {
+				draw() {
+
+				}
+			}
+		})
+
+		window.onload = function () {
+			let ball = document.querySelector('#ball');
+			let ctx_ball = ball.getContext('2d');
+			ball.style.background = '#333';
+			let starList = [];
+			// function init() {
+			// 	ball.width = window.innerWidth;
+			// 	ball.height = window.innerHeight;
+			// }
+			// window.onresize = init;
+			// init();
+			ball.addEventListener('mousemove', function (event) {
+				let e = event;
+				starList.push(new Star(e.offsetX, e.offsetY));
+			})
+			// 定义Star类
+			function Star(x, y) {
+				this.x = x;
+				this.y = y;
+				this.vx = (Math.random() - 0.5) * 10;
+				this.vy = (Math.random() - 0.5) * 10;
+				this.color = randColor(0, 255);
+				this.a = 1;
+				this.rate = 1
+				this.drawBall();
+				// console.log(this.color);
+			}
+			Star.prototype = {
+				drawBall: function () {
+					// ctx_ball.strokeStyle = this.color;
+					ctx_ball.fillStyle = this.color;
+					// ctx_ball.fillStyle = "rgba(255, 255, 255, 0.8)";
+					ctx_ball.globalAlpha = this.a;
+					ctx_ball.globalCompositeOperation = 'lighter';
+					ctx_ball.beginPath();
+					ctx_ball.arc(this.x, this.y, Math.random() * 10 * this.rate, 0, Math.PI * 2, true);
+					// ctx_ball.stroke();
+					ctx_ball.fill();
+					// ctx_ball.closePath();
+					this.update();
+				},
+				update: function () {
+					this.x += this.vx;
+					this.y += this.vy;
+					this.a *= 0.99;
+					this.rate *= 0.99;
+
+					// console.log(this.x);
+				}
+			}
+			function renderBall() {
+				console.log(starList.length);
+				ctx_ball.clearRect(0, 0, ball.width, ball.height);
+				starList.forEach(function (item, i) {
+					item.drawBall();
+					if (item.a < 0.1) {
+						starList.splice(i, 1);
+					}
+				})
+
+
+				window.requestAnimationFrame(renderBall);
+			}
+			renderBall();
+
+			function randNum(min, max) {
+				let num = Math.floor(Math.random() * (max - min) + min);
+				return num;
+			}
+			function randColor(min, max) {
+				let r = Math.floor(Math.random() * (max - min) + min);
+				let g = Math.floor(Math.random() * (max - min) + min);
+				let b = Math.floor(Math.random() * (max - min) + min);
+				return 'rgb(' + r + ',' + g + ',' + b + ')';
+			}
+
+
+
+			//code;
+			let code = document.getElementById('code');
+			let ctx_code = code.getContext('2d');
+			drawCode();
+			code.onclick = function () {
+				drawCode();
+			}
+			function drawCode() {
+				ctx_code.clearRect(0, 0, code.width, code.height);
+				//random bg color;
+				ctx_code.fillStyle = randColor(170, 250);
+				//code size;
+				ctx_code.fillRect(0, 0, 120, 30);
+				//code data to show;
+				let data = "123456789abcdefghijklmnopkrstuvwxyz";
+				let len = data.length;
+				//show chars in data; one char every 30;
+				for (let i = 0; i <= 90; i += 30) {
+					let char = data[randNum(0, len - 1)];
+					ctx_code.fillStyle = randColor(60, 160);
+					ctx_code.font = randNum(20, 40) + 'px SimHei';
+					ctx_code.strokeText(char, i + randNum(0, 15), randNum(15, 30));
+				};
+				//show lines;
+				for (let i = 0; i < 5; i++) {
+					ctx_code.beginPath();
+					ctx_code.strokeStyle = randColor(60, 160);
+					ctx_code.moveTo(randNum(0, 120), randNum(0, 30));
+					ctx_code.lineTo(randNum(0, 120), randNum(0, 30));
+					ctx_code.stroke();
+				};
+				//show circles;
+				for (let i = 0; i < 10; i++) {
+					ctx_code.beginPath();
+					ctx_code.strokeStyle = randColor(60, 160);
+					ctx_code.arc(randNum(0, 120), randNum(0, 30), randNum(1, 4), 0, Math.PI * 2);
+					ctx_code.stroke();
+				}
+			}
+
+
+			// taiji
+			let taiji = document.getElementById('taiji');
+			let ctx_taiji = taiji.getContext('2d');
+			let xPos = taiji.width / 2;
+			let yPos = taiji.height / 2;
+			let radius = 120;
+
+			ctx_taiji.beginPath();
+			ctx_taiji.fillStyle = "#fff";
+			ctx_taiji.arc(xPos, yPos, radius, 3 * Math.PI / 2, Math.PI / 2);
+			ctx_taiji.fill();
+
+			ctx_taiji.beginPath();
+			ctx_taiji.fillStyle = "#000";
+			ctx_taiji.arc(xPos, yPos, radius, 3 * Math.PI / 2, Math.PI / 2, true);
+			ctx_taiji.fill();
+
+			ctx_taiji.beginPath();
+			ctx_taiji.fillStyle = "#fff";
+			ctx_taiji.arc(xPos, yPos - 60, radius / 2, 0, 2 * Math.PI);
+			ctx_taiji.fill();
+
+			ctx_taiji.beginPath();
+			ctx_taiji.fillStyle = "#000";
+			ctx_taiji.arc(xPos, yPos + 60, radius / 2, 0, 2 * Math.PI, true);
+			ctx_taiji.fill();
+
+			ctx_taiji.beginPath();
+			ctx_taiji.fillStyle = "#000";
+			ctx_taiji.arc(xPos, yPos - 60, radius / 8, 0, 2 * Math.PI);
+			ctx_taiji.fill();
+
+			ctx_taiji.beginPath();
+			ctx_taiji.fillStyle = "#fff";
+			ctx_taiji.arc(xPos, yPos + 60, radius / 8, 0, 2 * Math.PI, true);
+			ctx_taiji.fill();
+
+
+			// raining;
+			let rain = document.getElementById('rain');
+			let ctx_rain = rain.getContext('2d');
+			let lineH = 5;
+			let lineV = 20;
+			ctx_rain.strokeStyle = "rgba(0,0,220,0.4)";
+			function drawRain() {
+				ctx_rain.clearRect(0, 0, rain.width, rain.height);
+				for (let i = 0; i < 100; i++) {
+					let x = Math.random() * rain.width;
+					let y = Math.random() * rain.height;
+					drawLine(x, y, lineH, lineV);
+				};
+			}
+			function drawLine(x, y, h, v) {
+				ctx_rain.beginPath();
+				ctx_rain.moveTo(x, y);
+				ctx_rain.lineTo(x + h, y + v);
+				ctx_rain.stroke();
+			}
+			let rainInter = setInterval(drawRain, 100);
+
+			// test
+			let test = document.getElementById('test');
+			let test_ctx = test.getContext('2d');
+
+			test_ctx.beginPath();
+			test_ctx.fillStyle = "#f40";
+			test_ctx.fillRect(10, 10, 150, 75);
+			test_ctx.closePath();
+
+			test_ctx.strokeStyle = "rgba(0,0,0,0.4)";
+			test_ctx.beginPath();
+			test_ctx.moveTo(160, 85);
+			test_ctx.lineTo(200, 200);
+			test_ctx.stroke();
+			test_ctx.closePath();
+
+			test_ctx.strokeStyle = "rgba(255,255,255,1)";
+			test_ctx.fillStyle = "#f40";
+			test_ctx.beginPath();
+			test_ctx.arc(200, 200, 30, 0, Math.PI * 2, true);
+			test_ctx.stroke();
+			test_ctx.fill();
+			test_ctx.closePath();
+
+			test_ctx.strokeStyle = "rgba(0,0,0,1)";
+			test_ctx.fillStyle = "rgba(0,0,0,0.8)";
+			test_ctx.beginPath();
+			test_ctx.arc(350, 150, 60, Math.PI / 2, Math.PI);
+			test_ctx.stroke();
+			test_ctx.fill();
+			test_ctx.closePath();
+
+			test_ctx.strokeStyle = "rgba(255,0,0,1)";
+			test_ctx.fillStyle = "rgba(155,155,155,0.4)";
+			test_ctx.font = '40px SimHei';
+			test_ctx.textAlign = 'center';
+			test_ctx.strokeText('glpla', 300, 100);
+			test_ctx.fillText('glpla', 300, 100);
+
+			let img = new Image();
+			img.src = './img/rou0.jpg';
+			img.onload = function () {
+				test_ctx.drawImage(img, 400, 0, 100, 100);
+			}
+		}
+	</script>
+</body>
+
+</html>

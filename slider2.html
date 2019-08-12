@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义轮播</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .wrap {
+      position: relative;
+      width: 640px;
+      height: 360px;
+      margin: 40px auto;
+    }
+
+    ul.img-ul li {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: all 1s ease;
+    }
+
+    ul.img-ul li.active {
+      opacity: 1;
+    }
+
+    ul.tab-ul {
+      position: absolute;
+      width: 210px;
+      height: 30px;
+      left: 50%;
+      margin-left: -105px;
+      bottom: 20px;
+      /* background-color: #fff; */
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    ul.tab-ul li {
+      display: block;
+      width: 20px;
+      height: 20px;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+    }
+
+    ul.tab-ul li.cur {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    p {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <p>mouse out</p>
+  <div class="wrap">
+    <ul class="img-ul">
+      <li><img data-src="./img/rou0.jpg" src="./img/rou0.jpg" alt=""></li>
+      <li><img data-src="./img/rou1.jpg" src="./img/rou1.jpg" alt=""></li>
+      <li><img data-src="./img/rou2.jpg" src="./img/rou2.jpg" alt=""></li>
+      <li><img data-src="./img/rou3.jpg" src="./img/rou3.jpg" alt=""></li>
+      <li><img data-src="./img/rou4.jpg" src="./img/rou4.jpg" alt=""></li>
+      <li><img data-src="./img/rou5.jpg" src="./img/rou5.jpg" alt=""></li>
+      <li><img data-src="./img/rou6.jpg" src="./img/rou6.jpg" alt=""></li>
+    </ul>
+    <ul class="tab-ul">
+      <li><a href="javascript:;"></a></li>
+      <li><a href="javascript:;"></a></li>
+      <li><a href="javascript:;"></a></li>
+      <li><a href="javascript:;"></a></li>
+      <li><a href="javascript:;"></a></li>
+      <li><a href="javascript:;"></a></li>
+      <li><a href="javascript:;"></a></li>
+    </ul>
+  </div>
+  <script>
+    window.onload = function () {
+      function lunbo() {
+        idx++;
+        idx = idx % 7;
+        imgLi.forEach((item, index) => {
+          item.className = '';
+          index == idx ? item.className = 'active' : item.className = ''
+        })
+        tabLi.forEach((item, index) => {
+          item.className = '';
+          index == idx ? item.className = 'cur' : item.className = ''
+        })
+      }
+      let img = document.querySelector('.img-ul'),
+        imgLi = img.querySelectorAll('li'),
+        tab = document.querySelector('.tab-ul'),
+        tabLi = tab.querySelectorAll('li'),
+        tips = document.querySelector('p'),
+        idx = 0,
+        dur = 2000,
+        inter = setInterval(lunbo, dur);
+      imgLi[0].className = 'active';
+      tabLi[0].className = 'cur';
+      imgLi.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+          clearInterval(inter)
+          tips.innerHTML = 'mouse enter';
+        }, false)
+        item.addEventListener('mouseleave', () => {
+          inter = setInterval(lunbo, dur)
+          tips.innerHTML = 'mouse leave';
+        }, false)
+      })
+      tabLi.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+          clearInterval(inter)
+          tips.innerHTML = 'mouse tab enter';
+        }, false)
+        item.addEventListener('click', (e) => {
+          idx = index;
+          tabLi.forEach((item, index) => {
+            item.className = '';
+          })
+          imgLi.forEach((item, index) => {
+            item.className = '';
+          })
+          item.className = 'cur';
+          imgLi[index].className = 'active';
+          tips.innerHTML = 'mouse tab click';
+        }, false)
+        item.addEventListener('mouseleave', () => {
+          inter = setInterval(lunbo, 1000)
+          tips.innerHTML = 'mouse tab leave';
+        }, false)
+      })
+    }
+  </script>
+</body>
+
+</html>

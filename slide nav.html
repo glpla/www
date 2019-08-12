@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<title>slide nav</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+	*{
+		margin: 0px;
+		padding: 0px;
+		list-style: none;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	.wrap{
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	.bg{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+	}
+	.bg-item{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		transition:0.2s;
+	}
+	.show{
+		opacity: 1;
+	}
+	.hide{
+		opacity: 0;
+	}
+	.bg-item img{
+		width: 100%;
+		height: 100%;
+	}
+	.cont-box{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	.cont{
+		width: 790px;
+		height: 360px;
+		margin: 20px auto;
+		background: #ccc;
+		display: flex;
+		border: 1px solid rgba(255,255,255,0.4);
+	}
+	.cont-item{
+		width: 50px;
+		height: 100%;
+		transition:0.2s;
+		position: relative;
+		overflow: hidden;
+	}
+	.cont-item .img{
+		position: absolute;
+		top: 0px;
+		width: 640px;
+		height: 360px;		
+	}
+	.cont-item .txt{
+		box-sizing:border-box;
+		padding: 20px;
+		word-wrap:break-word;
+		position: absolute;
+		top: 0px;
+		width: 50px;
+		height: 100%;
+		background: rgba(255,255,255,0.2);
+		color: #fff;
+		text-align: center;
+		cursor: pointer;
+	}	
+	.expand{
+		width: 640px;
+	}
+	.shrink{
+		width: 50px;
+	}
+	</style>
+</head>
+<body>
+	<div id='wrap' class='wrap'>		
+		<ul class='bg'>
+			<li class='bg-item' v-for='(item,index) in pic' v-bind:class='index==picIndex?"show":"hide"'>
+				<img v-bind:src="item" alt="">
+			</li>
+		</ul>
+		<div class="cont-box">
+			<ul class="cont">
+				<li class='cont-item' v-for='(item,index) in pic' v-bind:class='picIndex==index?"expand":"shrink"' v-on:click='scalePic(index)'>
+					<img class='img' v-bind:src="item" alt="">
+					<p class='txt'>{{title[index]}}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<script>	
+	let vm = new Vue({
+		el: '#wrap',
+		data: {
+			picIndex:0,
+			pic:['img/rou0.jpg','img/rou1.jpg','img/rou2.jpg','img/rou3.jpg'],
+			title:['Glpla','Glboy','Unit544141','Unit75716']
+		},
+		methods: {
+			scalePic:function (index){
+				this.picIndex=index;
+				console.log(this.picIndex);
+			}
+		},
+		computed:{
+			
+		}
+	})
+	</script>
+	
+</body>
+</html>

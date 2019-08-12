@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>nav Vue</title>
+  <meta charset="utf-8">
+  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+  <style>
+  *{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    text-decoration: none;
+    font-family: Verdana, "微软雅黑", sans-serif;
+  }
+  html,body{    
+    height: 100%;
+  }
+  #wrap{
+    width: 200px;
+    height: 100%;
+    background: #1B2031;
+  }
+  .nav-head{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background: #44495a;
+  }
+  .nav-wrapper{
+    width: 200px;
+    color: #fff;
+  }
+  .nav-main{
+    margin: 2px 0px;
+  }
+  .nav-wrap{
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 0px 10px;   
+    background: #2588E5;
+    cursor: pointer;
+  }
+  .nav-wrap:hover{
+    background: #00BFFF;
+  }  
+  /*自定义小三角*/
+  .triangle{
+    border: 6px solid transparent;
+    border-left-color: #fff;
+    transition:0.4s;
+  }
+  .triangle.on{
+    transform:rotate(90deg);
+  }
+  .sub-nav-wrap{
+    height: 0px;
+    overflow: hidden;
+    transition:0.4s;
+  }
+  .sub-nav-wrap.on{
+    height: 220px;
+  }
+  .sub-nav{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    color: #aaa;
+    font-size: 14px;
+    background: #282c3a;
+    border-bottom:1px solid #42495d;
+    cursor: pointer;
+  }
+  .sub-nav:hover{
+    color: #fff;    
+  }
+  /*------------------------------------*/
+  .h-nav{
+    color: #888;
+    text-align: center;
+  }
+  .h-nav li{
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    position: relative;
+  }
+  .h-nav li:hover{
+    color: #fff;
+    transition:all 0.5s;
+  }
+  .h-nav li::before{
+    content: '\5B';
+    display: inline-block;
+    position: absolute;
+    left: 60px;
+    opacity: 0;
+    transition:all 0.5s;
+  }
+  .h-nav li:hover::before{
+    color: #fff;
+    left: 0px;
+    opacity: 1;
+  }
+  .h-nav li::after{
+    content: '\5D';
+    display: inline-block;
+    position: absolute;
+    right: 60px;
+    opacity: 0;
+    transition:all 0.5s;
+  }
+  .h-nav li:hover::after{
+    color: #fff;
+    right: 0px;
+    opacity: 1;
+  }
+  .spacer{
+    color: #888;
+    font-size: 12px;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+  }
+  </style>
+</head>
+<body>
+  <div id='wrap'>
+    <div class="nav-head">垂直导航</div>
+    <ul class="nav-wrapper">
+      <li class="nav-main" v-for="(val, index) in navList">
+        <div class="nav-wrap" v-on:click="navClick(val,index)">
+          <span class='nav' href="#">{{val.type}}</span>
+          <div class='triangle' v-bind:class=" val.flag? 'on' : '' "></div>
+        </div>
+        <ul class='sub-nav-wrap' v-bind:class=" val.flag? 'on' : '' ">
+          <li class="sub-nav" v-for="(val,index) in val.subType">{{val}}</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="spacer">------华丽分割符------</div>
+    <ul class="h-nav">
+      <li v-for='item in vNav'>{{item}}</li>
+    </ul>
+  </div>
+  
+  <script>
+  var vm = new Vue({
+    el: '#wrap',
+    data: {
+      navIndex: 0,
+      navList:[{
+        type:"Male",
+        flag:true,
+        subType:["shirt","pants","shoe","belt","tie","fit"]
+      },{
+        type:"Female",
+        flag:false,
+        subType:["face","body","hand","foot","nail"]
+      },{
+        type:"Child",
+        flag:false,
+        subType:["toy","book","bag","work","out"]
+      },{
+        type:"Old",
+        flag:false,
+        subType:["medcine","food","pet"]
+      }],
+      vNav:['Home','Info','Mail','Note','Link']
+    },
+    methods: {
+      navClick: function(val,index) {
+        // 如果点的是当前,就收起2级菜单
+        if(index==this.navIndex){
+          //
+        }else{
+          // 如果点的是另外的,就展开2级菜单
+          this.navList.forEach(function(v,index){
+            v.flag=false;
+          });
+          this.navIndex=index;
+        }
+        val.flag=!val.flag;
+      }
+      
+    }
+  })
+  </script>
+</body>
+</html>

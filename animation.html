@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<title>animation loading</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+		outline: none;
+		border: none;
+	}
+	html,body{
+		height: 100%;
+	}
+	body{
+		background: #ccc;
+	}
+	.wrapper{
+		width: 100%;
+		height: 450px;
+		display: flex;
+		flex-direction:row;
+		justify-content:center;
+		align-items:center;
+		/*border-bottom: 1px solid #f40;*/
+	}
+	.box{
+		position: relative;
+		width: 200px;
+		height: 200px;
+	}
+	.box::after{
+		content: "";
+		width: 100%;
+		height: 100%;
+		background: #6B8E23;
+		border-radius: 40px;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		transform:translateY(0px);
+		animation: hop 1.5s infinite linear;
+	}
+	@keyframes hop{
+		0%{
+			transform:translateY(0px) rotate(0deg);
+		}
+		50%{
+			transform:translateY(100px) rotate(45deg);
+			border-bottom-right-radius:100px;
+		}
+		100%{
+			transform:translateY(0px) rotate(90deg);
+		}
+	}
+	.box::before{
+		content: "";
+		width: 100%;
+		height: 60px;
+		background: #888;
+		border-radius: 50%;
+		position: absolute;
+		left: 0px;
+		bottom: -120px;
+		opacity: 0.4;
+		animation:zoom 1.5s infinite linear;
+	}
+	@keyframes zoom{
+		0%{
+			transform:scale(1);
+		}
+		50%{
+			transform:scale(1.2);
+		}
+		100%{
+			transform:scale(1);
+		}
+	}
+	/*------------ring-------------------*/
+	.ring{
+		width: 100px;
+		height: 100px;
+		background: #079;
+		margin: 20px auto;
+		border-radius: 50%;
+	}
+	.out{
+		width: 55px;
+		height: 55px;		
+		border:2px solid transparent;
+		border-radius: 50%;
+		border-top:2px solid #fff;
+		border-left:2px solid #fff;
+		animation: roll 5s linear infinite;
+	}
+	.mid{
+		width: 40px;
+		height: 40px;
+		border:2px solid transparent;
+		border-radius: 50%;
+		border-top:2px solid #fff;
+		border-right:2px solid #fff;
+		animation: roll 4s linear infinite;
+	}
+	.in{
+		width: 25px;
+		height: 25px;
+		border:2px solid transparent;
+		border-radius: 50%;
+		border-left:2px solid #fff;
+		border-bottom:2px solid #fff;
+		animation: roll 3s linear infinite;
+	}
+	.center{
+		width: 10px;
+		height: 10px;
+		border:2px solid transparent;
+		border-radius: 50%;
+		border-right:2px solid #fff;
+		border-bottom:2px solid #fff;
+		animation: roll 2s linear infinite;
+	}
+	.flex{
+		display: flex;
+		justify-content:center;
+		align-items:center;
+	}
+	@keyframes roll{
+		0%{
+			transform:rotate(0deg);
+		}
+		100%{
+			transform:rotate(360deg);
+		}
+	}
+	</style>
+</head>
+<body>
+	<div id="wrapper" class="wrapper">
+		<div class="box"></div>
+	</div>
+	<div class="ring flex">
+		<div class="out flex">
+			<div class="mid flex">
+				<div class="in flex">
+					<div class="center"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	window.onload=function(){
+		let vm=new Vue({
+			el:"#wrapper",
+			data:{
+				
+			},
+			methods:{
+				
+			},
+			computed:{
+
+			}
+		})
+		
+	}	
+	
+	</script>
+</body>
+</html>

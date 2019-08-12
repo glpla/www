@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name='keywords' content="test 测试">
+  <meta name='description' content="demo from glpla.">
+  <title>js demo</title>
+  <link rel="icon" href="img/glpla.ico" type="image/x-icon">
+  <!-- <link rel="stylesheet" type="text/css" href="css/init.css"> -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src='js/vue2019.js'></script>
+</head>
+<style class='my_style'>
+  #app {
+    background: #fff;
+
+  }
+
+  button {
+    background: #f06;
+    height: 20px;
+    font-size: 1rem;
+    padding: 2rem;
+    border-radius: 50%;
+    line-height: 1;
+  }
+
+  .box {
+    height: 100px;
+    background: #f06;
+  }
+
+  .wrap {
+    height: 50px;
+    background: #fff;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .blue {
+    background: #079;
+  }
+</style>
+
+
+<body>
+  <div id='app'>
+    {{tips|lowercase|capitalize}}
+  </div>
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        tips: 'asdf12',
+        msg: 'glpla'
+      },
+      methods: {}
+    })
+  </script>
+</body>
+
+
+</html>

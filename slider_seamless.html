@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js demo</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    background-color: #999;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  #box {
+    position: relative;
+    width: 640px;
+    height: 360px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+
+  #imgbox {
+    position: absolute;
+    width: 10000px;
+  }
+
+  #imgbox li {
+    float: left;
+    width: 640px;
+    height: 360px;
+  }
+
+  #list {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  #list li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: rgba(222, 255, 255, 0.4);
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  #list li.on {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  #list li:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+</style>
+
+
+<body>
+  <p id='title'>1</p>
+  <div id="box">
+    <ul id="imgbox">
+      <li><img src="img/rou0.jpg" /></li>
+      <li><img src="img/rou1.jpg" /></li>
+      <li><img src="img/rou2.jpg" /></li>
+      <li><img src="img/rou3.jpg" /></li>
+      <li><img src="img/rou4.jpg" /></li>
+      <li><img src="img/rou5.jpg" /></li>
+      <li><img src="img/rou6.jpg" /></li>
+      <li><img src="img/rou7.jpg" /></li>
+    </ul>
+    <ul id='list'>
+      <li class="on">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+    </ul>
+  </div>
+
+
+  <script src="js/mine.js"></script>
+  <script>
+    window.onload = function () {
+      let speed = 1500,
+        dur = 10,
+        imgBox = $('imgbox'),
+        list = $('list').children,
+        imgs = imgBox.children,
+        len = imgs.length,
+        width = imgs[0].offsetWidth,
+        index = 0,
+        index2 = 0,
+        inter = setInterval(slider, speed);
+
+      function slider() {
+
+        if (index == 0) {
+          imgs[0].style.position = "static";
+          imgBox.style.left = 0;
+          index2 = 0;
+        }
+
+        if (index == len - 1) {
+          index = 0;
+          imgs[0].style.position = "relative";
+          imgs[0].style.left = len * width + "px";
+        } else {
+          index++;
+        }
+        index2++;
+        $('title').innerHTML = index + 1;
+        let tar = -index2 * width;
+        listUpdate(index);
+        clearInterval(imgBox.inter);
+        imgBox.inter = setInterval(() => {
+          let cur = imgBox.offsetLeft;
+          if (cur > tar) {
+            cur -= 10;
+            imgBox.style.left = cur + 'px';
+          } else {
+            clearInterval(imgBox.inter);
+            imgBox.style.left = tar + 'px';
+          }
+
+        }, dur)
+
+      }
+
+      function listUpdate(flag) {
+        for (let i = 0; i < list.length; i++) {
+          list[i].className = '';
+        }
+        list[flag].className = 'on';
+      }
+      imgBox.onmouseover = function () {
+        clearInterval(inter);
+      }
+      imgBox.onmouseout = function () {
+        inter = setInterval(slider, speed)
+      }
+
+
+
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

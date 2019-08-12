@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>pic show</title>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <!-- <link rel="stylesheet" href="js/bootstrap-3.3.7-dist/css/bootstrap.min.css"> -->
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script> -->
+  <!-- <script src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script> -->
+  <script src="js/vue.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.5;
+      background: #92bde7;
+      width: 100%;
+      height: 100%;
+      color: #485e74;
+    }
+
+    .containder {
+      max-width: 760px;
+      margin: 20px auto;
+      border: 3px solid #fff;
+      background: #fff;
+    }
+
+    .wrap img,
+    .imgs img {
+      width: 100%;
+    }
+
+    .wrap img {
+      transition: all 1s ease;
+    }
+
+    .imgs {
+      display: grid;
+      /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 5px;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .test {
+      margin: 0px auto;
+      max-width: 760px;
+      padding: 5px;
+      background: #fff;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-content: stretch;
+      flex-wrap: wrap;
+    }
+
+    .test div {
+      width: 20%;
+    }
+
+    .test div img {
+      box-sizing: border-box;
+      width: 100%;
+      border: 5px solid #fff;
+    }
+    .title{
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="containder">
+    <h1 class='title'>Gallery</h1>
+    <div class="wrap">
+      <img src="./img/01.jpeg" alt="" id='main'>
+    </div>
+    <div class="imgs">
+      <img src="./img/01.jpeg" alt="">
+      <img src="./img/02.jpeg" alt="">
+      <img src="./img/03.jpeg" alt="">
+      <img src="./img/04.jpeg" alt="">
+      <img src="./img/05.jpeg" alt="">
+      <img src="./img/06.jpeg" alt="">
+      <img src="./img/07.jpeg" alt="">
+      <img src="./img/08.jpeg" alt="">
+    </div>
+
+  </div>
+  <div class="test">
+    <div>
+      <img src="./img/01.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/02.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/03.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/04.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/05.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/06.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/07.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/08.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/01.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/02.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/03.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/04.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/05.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/06.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/07.jpeg" alt="">
+    </div>
+    <div>
+      <img src="./img/08.jpeg" alt="">
+    </div>
+  </div>
+
+  <script>
+    let main = document.querySelector('#main')
+    let imgs = document.querySelectorAll('.imgs img')
+    imgs[0].style.opacity = 0.8
+    imgs.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        if (main.src != e.target.src) {
+          imgs.forEach((img) => {
+            img.style.opacity = 1
+          })
+          main.src = e.target.src
+          main.classList.add('fade-in')
+          setTimeout(() => {
+            main.classList.remove('fade-in')
+          }, 100)
+          item.style.opacity = 0.8;
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

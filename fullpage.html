@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fullpage demo</title>
+    <link rel="stylesheet" href="css/jquery.fullpage.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="./js/layui-v2.4.5/layui/css/layui.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- <script src="js/jquery.easings.min.js"></script> -->
+    <script src="js/jquery.fullpage.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+
+    <style>
+        .img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .section>div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pro {
+            width: 1000px;
+            height: 600px;
+            /* background: rgba(255, 255, 255, 0.2); */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .pro .red,
+        .pro .blue,
+        .pro .yellow {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            position: relative;
+        }
+
+        .pro .red .color,
+        .pro .blue .color,
+        .pro .yellow .color {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .pro .red .color {
+            background: #f40;
+        }
+
+        .pro .blue .color {
+            background: #079;
+        }
+
+        .pro .yellow .color {
+            background: rgb(179, 226, 7);
+        }
+
+        .two.scale .red .color,
+        .two.scale .blue .color,
+        .two.scale .yellow .color {
+            animation: scalePro 1s linear;
+        }
+
+        .pro .flag {
+            position: absolute;
+            top: 0px;
+            left: 60px;
+            width: 0px;
+            height: 0px;
+            /* background: #333; */
+            color: #fff;
+            border-top: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #333;
+        }
+
+        .pro .flag::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            left: -70px;
+            top: -10px;
+            background: #333;
+        }
+
+        .four>div {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .four .search {
+            width: 400px;
+            height: 400px;
+            /* background: #fff; */
+            position: relative;
+            transform: translateX(-150%);
+        }
+
+        .four .info {
+            width: 400px;
+            height: 400px;
+            background: url('img/rou0.jpg');
+        }
+
+        .four .input-wrap {
+            width: 100%;
+            height: 60px;
+            background: url('img/bg0.jpg');
+        }
+
+        .four .key {
+            width: 0px;
+            height: 40px;
+            line-height: 40px;
+            overflow: hidden;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .four .result-wrap {
+            width: 100%;
+            height: 85%;
+            overflow: hidden;
+        }
+
+        .four .result {
+            width: 100%;
+            height: 100%;
+            background: url('img/bg2.jpg');
+            transform: translateY(-100%);
+        }
+
+        .four.add .search {
+            transform: translateX(0);
+            transition: all 1s linear;
+        }
+
+        .four.add .key {
+            animation: slideIn 1.2s steps(5) 1s forwards;
+        }
+
+        .four.add .result {
+            transform: translateY(0);
+            transition: all 0.2s linear 2.5s;
+        }
+
+        @keyframes slideIn {
+            0% {
+                width: 0px;
+            }
+
+            100% {
+                width: 80px;
+            }
+        }
+
+        @keyframes scalePro {
+            0% {
+                width: 0px;
+            }
+        }
+
+        #time,
+        #date {
+            color: #fff;
+        }
+
+        .txt-size {
+            font-size: 16px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body onload="getNowDate()">
+    <div id="wrap">
+        <div class="section one">
+            <div class="img">
+                <img src="./img/avata.jpg" alt="avata">
+            </div>
+            <h1>glpla</h1>
+        </div>
+        <div class="section two">
+            <div>
+                <h1 style="text-align:center">Skills</h1>
+                <div class="pro">
+                    <div class="red">
+                        <div class="color" style="width:65%"></div>
+                        <div class='flag'></div>
+                    </div>
+                    <div class="blue">
+                        <div class="color" style="width:20%"></div>
+                        <div class='flag'></div>
+                    </div>
+                    <div class="yellow">
+                        <div class="color" style="width:95%"></div>
+                        <div class='flag'></div>
+                    </div>
+                    <div>
+                        <div class="layui-progress">
+                            <div class="layui-progress-bar" lay-percent="10%" lay-showPercent="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section three">
+            <h1>to do...</h1>
+        </div>
+        <div class="section four">
+            <div class="search">
+                <div class="key">大树问你好</div>
+                <div class='input-wrap'>
+                </div>
+                <div class='result-wrap'>
+                    <div class="result"></div>
+                </div>
+            </div>
+            <div class="info"></div>
+        </div>
+        <div class="section five">
+            <h1>End</h1>
+            <span id='date'></span>
+            <span id='time'></span>
+        </div>
+    </div>
+    <script>
+        //注意进度条依赖 element 模块，否则无法进行正常渲染和功能性操作
+        layui.use('element', function () {
+            var element = layui.element;
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#wrap').fullpage({
+                sectionsColor: ['#0da5d6', '#2ab561', '#de8910', '#709', '#f40'],
+                afterLoad: function (archorLink, index) {
+                    console.log(index);
+                    if (index == 4) {
+                        $('.section').eq(3).addClass('add')
+                    }
+                    if (index == 2) {
+                        $('.section').eq(1).addClass('scale')
+                    }
+                }
+            });
+        })
+        let vm = new Vue({
+            el: "#wrap",
+            data: {
+
+            }
+        })
+        function getNowDate() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds()
+            var weekArr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            var week = weekArr[date.getDay()];
+
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (day >= 0 && day <= 9) {
+                day = "0" + day;
+            }
+            if (hour >= 0 && hour <= 9) {
+                hour = "0" + hour;
+            }
+            if (minutes >= 0 && minutes <= 9) {
+                minutes = "0" + minutes;
+            }
+            if (seconds >= 0 && seconds <= 9) {
+                seconds = "0" + seconds;
+            }
+            document.getElementById("date").innerHTML = year + "年" + month + "月" + day + "日" + " " + week;
+            document.getElementById("time").innerHTML = hour + "时" + minutes + "分" + seconds + "秒";
+        }
+        let inter = setInterval(getNowDate, 1000)
+
+    </script>
+
+</body>
+
+</html>

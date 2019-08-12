@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>banner</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    background-color: #999;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrap {
+    position: relative;
+    width: 640px;
+    height: 360px;
+    background-color: #666;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+
+  img {
+    vertical-align: middle;
+  }
+
+  #box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .2s ease;
+  }
+
+  #box li.active {
+    float: left;
+  }
+
+  #list {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  #list li {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    background-color: #ddd;
+    opacity: 0.6;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+
+  #list li.on {
+    background-color: #fff;
+    opacity: 1;
+  }
+
+  #mode {
+    position: absolute;
+    right: 0px;
+  }
+
+  #mode li {
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #fff;
+    margin: 10px;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+
+  <div class="wrap">
+    <ul id='box'>
+      <li><img src="img/rou0.jpg" alt=""></li>
+      <li><img src="img/rou1.jpg" alt=""></li>
+      <li><img src="img/rou2.jpg" alt=""></li>
+      <li><img src="img/rou3.jpg" alt=""></li>
+      <li><img src="img/rou4.jpg" alt=""></li>
+      <li><img src="img/rou5.jpg" alt=""></li>
+      <li><img src="img/rou6.jpg" alt=""></li>
+    </ul>
+    <ul id='list'>
+      <li class='on'>0</li>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+    <ul id='mode'>
+      <li>上下</li>
+      <li>左右</li>
+    </ul>
+  </div>
+
+
+  <script>
+    window.onload = function () {
+
+      let mode = false,
+        cur = 0, //保留当前slide的索引
+        oUl = document.getElementById('box'),
+        //获取每个slide的宽度和高度
+        h = oUl.children[0].offsetHeight,
+        w = oUl.children[0].offsetWidth,
+        //oList = document.getElementByTagName('#list li'),//性能不太好
+        oList = document.getElementById('list').children,
+        oMode = document.getElementById('mode').children;
+      for (let i = 0; i < oMode.length; i++) {
+        oMode[i].onclick = function () {
+          mode = i;
+          //利用mode来切换ul的显示形式
+          if (mode) {
+            oUl.style.width = w * oUl.children.length + 'px';
+            for (let i = 0; i < oUl.children.length; i++) {
+              oUl.children[i].className = 'active';
+            }
+            //左右方向时:保留当前位置,并初始停靠上侧
+            oUl.style.left = -cur * w + 'px';
+            oUl.style.top = 0 + 'px';
+          } else {
+            oUl.style.width = w + 'px';
+            for (let i = 0; i < oUl.children.length; i++) {
+              oUl.children[i].className = '';
+            }
+            //上下方向时:保留当前位置,并初始停靠左侧
+            oUl.style.top = -cur * h + 'px';
+            oUl.style.left = 0 + 'px';
+          }
+        }
+      }
+      for (let i = 0; i < oList.length; i++) {
+        //遍历类数组元素时,因为要动态获取每个i,所以不方便采用addEventListener;
+        //也可以将类数组转化为数组后用forEach;
+        oList[i].onclick = function () {
+          for (let i = 0; i < oList.length; i++) {
+            oList[i].className = '';
+          }
+          this.className = 'on';
+          cur = i;
+          mode ? oUl.style.left = -w * i + 'px' : oUl.style.top = -h * i + 'px';
+        }
+
+      }
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

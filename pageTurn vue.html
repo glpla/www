@@ -1,0 +1,115 @@
+<html>
+<head>	
+	<title>page turn vue</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	.test{
+		width: 640px;
+		height: 360px;
+		margin: 50px auto;
+		background: #ccc;
+		position: relative;
+		perspective: 1000px;
+		background: url('img/rou0.jpg');
+		border:8px solid #ccc;
+		border-bottom: 32px solid #ccc;
+	}
+	.left{
+		width: 50%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		/*NOTE:利用z-index放在前面*/
+		z-index: 1;	
+		transform-origin:left;
+		transform-style: preserve-3d;
+		transform:rotateY(0deg);
+	}
+	.left.on{
+		transform:rotateY(-180deg);
+		transition: 0.8s ease-in-out;
+	}
+	.prev{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		background: url('img/rou0.jpg') no-repeat top right;
+	}
+	.next{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		background: url('img/rou1.jpg') no-repeat top left;
+		/*NOTE:利用Z轴内移实现层级的堆叠顺序*/
+		transform:translateZ(-1px) scale(-1,1);
+	}
+	.right{
+		width: 50%;
+		height: 100%;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		background: url('img/rou1.jpg') no-repeat top right;
+	}
+	.tips{
+		width: 100%;
+		height: 30px;
+		position: absolute;
+		left: 0px;
+		bottom: -36px;
+		/*color: #fff;*/
+		text-align: center;
+		z-index: 2;
+	}
+	</style>
+</head>
+<body>
+	<div id='wrap' class="test" v-on:click='turnPic' v-bind:style='{backgroundImage: "url(img/rou"+picIndex+".jpg)"}'>
+		<div class="left" v-bind:class='{on:flag}'>
+			<div class="prev" v-bind:style='{backgroundImage: "url(img/rou"+picIndex+".jpg)"}'></div>
+			<div class="next" v-bind:style='{backgroundImage: "url(img/rou"+(picIndex+1)%picLen+".jpg)"}'></div>
+		</div>
+		<div class="right" v-bind:style='{backgroundImage: "url(img/rou"+(picIndex+1)%picLen+".jpg)"}'></div>
+		<div class='tips'>{{picIndex+1}}-{{picLen}}</div>
+	</div>
+	
+	<script>
+	let vm = new Vue({
+		el: '#wrap',
+		data: {
+			picLen:8,
+			picIndex:0,
+			flag:false
+		},
+		methods: {
+			turnPic:function(){
+				if(!this.flag){
+					this.flag=true;
+					setTimeout(()=>{
+						this.flag=false;
+						this.picIndex++;
+						this.picIndex%=this.picLen;
+					},1000)
+				}
+				
+				
+			}
+		}
+	})
+	</script>
+</body>
+</html>

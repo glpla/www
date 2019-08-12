@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>event demo:hide contextmenu</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    background-color: #999;
+  }
+
+  ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+  }
+
+  ul li {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+
+  ul li:last-child {
+    border: none;
+  }
+
+  ul li:hover {
+    background-color: #eee;
+    color: #333;
+  }
+
+  #cont-menu {
+    position: fixed;
+    /* width: 100px; */
+    /* height: 200px; */
+    background-color: #ccc;
+    overflow: hidden;
+    display: none;
+  }
+</style>
+
+<body>
+  <div id="cont-menu">
+    <ul id='option'>
+      <li data-value='54414'>54414</li>
+      <li data-value='75716'>75716</li>
+      <li data-value='75660'>75660</li>
+      <li data-value='glboy'>glboy</li>
+      <li data-value='glpla'>glpla</li>
+      <li data-value='cnplaman'>cnplaman</li>
+    </ul>
+  </div>
+
+  <script>
+    window.onload = function () {
+      let bool = false,
+        oMenu = document.getElementById('cont-menu');
+      document.oncontextmenu = function (event) {
+        let e = event || window.event;
+        oMenu.style.display = 'block';
+        oMenu.style.top = e.clientY + 'px';
+        oMenu.style.left = e.clientX + 'px';
+        bool = true;
+        return false;
+      }
+      document.addEventListener('click', sel, true);
+
+      function sel(event) {
+        if (bool) {
+          let e = event || window.event,
+            tar = e.target || e.srcElement;
+          if (tar.tagName.toString().toLowerCase() == 'li') {
+            console.log(tar.dataset.value);
+          } else {
+            console.log('menu cancle.');
+          }
+          oMenu.style.display = 'none';
+          bool = false;
+        }
+      }
+
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

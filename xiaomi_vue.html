@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>xiaomi vue element</title>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_871430_v7p882djz6o.css">
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.5;
+      /* background-color: #92bde7; */
+      width: 100%;
+      height: 100%;
+      color: #485e74;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      /* box-sizing: border-box; */
+    }
+
+    li {
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    h3 {
+      margin: 0;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .row-top {
+      background: #303133;
+      color: #b0b0b0;
+      height: 2rem;
+      line-height: 2rem;
+      text-align: center;
+    }
+
+    .col-top {
+      text-align: center;
+    }
+
+    .top-nav-ul {
+      display: flex;
+    }
+
+    .top-nav-li {
+      padding: 0 0.6rem 0;
+      font-size: 0.7rem;
+    }
+
+    .ul {
+      display: flex;
+    }
+
+    .ul li {
+      width: 20px;
+      text-align: center;
+      margin: 10px auto;
+    }
+
+    li:nth-of-type(odd) {
+      background: #f40;
+    }
+
+    .test {
+      width: 300px;
+      margin: 20px auto;
+      border: 1px solid #666;
+      padding: 10px;
+    }
+
+    .test::first-letter {
+      color: #f40;
+      font-size: 2.2rem;
+      font-weight: bold;
+      float: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='app'>
+    <p class='test'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam deleniti dolores accusamus beatae voluptatum perspiciatis nulla, ipsum dolore, reiciendis eum ullam iste nihil odit laborum natus ad nemo modi? Facilis, ipsum! Aperiam facere debitis mollitia nobis. Voluptatum nisi ut doloribus eos, veniam reiciendis dolorem nemo voluptatem consequatur deserunt asperiores delectus quia eaque eius. Veritatis, sit dolores. Commodi hic odio saepe.</p>
+    <p class='test'>本文是实战和基础的一个衔接总结。
+      在学完基础后，很多小伙伴都急于上手一个实战项目，觉的做完实战项目就算学会了Flutter，达到了工作水平一样。其实在实战和基础之间还需要有一个过度，人们喜欢称之为进阶。那这篇文章或者说视频就是进阶教程，它会以小实例的方式进行讲解。实例也会达到20个以上，每个小实例就是一个小的实战。</p>
+    <p class='test'>本文是实战和基础的一个衔接总结。
+      在学完基础后，很多小伙伴都急于上手一个实战项目，觉的做完实战项目就算学会了Flutter，达到了工作水平一样。其实在实战和基础之间还需要有一个过度，人们喜欢称之为进阶。那这篇文章或者说视频就是进阶教程，它会以小实例的方式进行讲解。实例也会达到20个以上，每个小实例就是一个小的实战。</p>
+
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        topNav: ['小米商城', 'MIUI', 'IoT', '云服务', '金融', '有品小爱', '开放平台', '政企服务', '资质证照', '协议规则', '下载app',
+          'Select Region'
+        ],
+        userInfo: ['大树', '消息通知', '我的订单', '购物车'],
+        mainNav: [{
+          title: '小米官网',
+          sub: ['glpla', 'unit', '54414', 'name', 'glpla', 'gender', 'male']
+        }, {
+          title: '红米',
+          sub: ['cnplaman', 'unit', '75716', 'name', 'cnplaman', 'gender', 'female']
+        }, {
+          title: '电视',
+          sub: ['glboy', 'unit', '75660', 'name', 'glboy', 'gender', 'male']
+        }, {
+          title: '笔记本',
+          sub: ['广州', 'unit', '特种作战学院', 'name', '无人机', 'gender', 'male']
+        }, {
+          title: '家电',
+          sub: ['桂林', 'unit', '综合训练基地', 'name', '通信', 'gender', 'male']
+        }, {
+          title: '新品',
+          sub: ['奇峰营区', 'unit', '54414', 'name', 'glpla', 'gender', 'male']
+        }, {
+          title: '路由器',
+          sub: ['秀峰营区', 'unit', '54414', 'name', 'glpla', 'gender', 'male']
+        }, {
+          title: '智能硬件',
+          sub: ['8904', 'unit', '54414', 'name', 'glpla', 'gender', 'male']
+        }, {
+          title: '服务',
+          sub: ['72602', 'unit', '54414', 'name', 'glpla', 'gender', 'male']
+        }, {
+          title: '社区',
+          sub: ['glpla', 'unit', '54414', 'name', 'glpla', 'gender', 'male']
+        }]
+      }
+    })
+  </script>
+</body>
+
+</html>

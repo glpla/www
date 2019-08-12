@@ -1,0 +1,125 @@
+<html>
+<head>	
+	<title>zoom pic vue</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	}	
+	.wrapper{
+		width: 100%;
+		height: 100%;
+		position: relative;
+		background: #1B2031;
+	}
+	.small{
+		width: 512px;
+		height: 384px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	.big{
+		width: 512px;
+		height: 384px;
+		position: absolute;
+		top: 0px;
+		left: 522px;		
+		overflow: hidden;
+		/*border: 1px solid #fff;*/
+	}
+
+	.small .box{
+		width: 512px;
+		height: 384px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+	}
+	.small .slider{
+		width: 50%;
+		height: 50%;
+		background: rgba(255,255,255,0.4);
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		display: none;
+	}
+	.small .small-pic{
+		width: 100%;
+		height: 100%;
+	}
+	.big .big-pic{
+		width: 1024px;
+		height: 768px;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		display: none;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrapper" class="wrapper">
+		<div class="small" ref='small' v-on:mousemove='mMove' v-on:mouseover='mOver' v-on:mouseout='mOut'>
+			<div class="box">
+				<img class="small-pic" src="img/bg0.jpg" alt="">
+			</div>
+			<div ref="slider" class="slider" v-bind:style="{left:mLeft+'px',top:mTop+'px',display:dis}"></div>
+		</div>
+		<div class="big" ref='big'>
+			<img class="big-pic" src="img/bg0.jpg" alt="" v-bind:style="{left:-mLeft*2+'px',top:-mTop*2+'px',display:dis}">
+		</div>
+	</div>
+	<script>
+	
+	let vm=new Vue({
+		el:"#wrapper",
+		data:{
+			mLeft:0,
+			mTop:0,
+			dis:'none'
+		},
+		methods:{
+			mMove:function(e){
+				// console.log(this.$refs.big.offsetWidth);
+				let sliderW=this.$refs.slider.offsetWidth,
+					sliderH=this.$refs.slider.offsetHeight,
+					smallW=this.$refs.small.offsetWidth,
+					smallH=this.$refs.small.offsetHeight;
+				this.mLeft=e.clientX-sliderW/2;
+				this.mTop=e.clientY-sliderH/2;
+				if(this.mLeft<=0){
+					this.mLeft=0;
+				}
+				if(this.mLeft>=smallW-sliderW){
+					this.mLeft=smallW-sliderW;
+				}
+				if(this.mTop<=0){
+					this.mTop=0;
+				}
+				if(this.mTop>=smallH-sliderH){
+					this.mTop=smallH-sliderH;
+				}
+			},
+			mOver:function(){
+				this.dis='block'
+			},
+			mOut:function(){
+				this.dis='none'
+			}
+			
+		}
+	})
+	</script>
+</body>
+</html>

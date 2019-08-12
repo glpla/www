@@ -1,0 +1,102 @@
+<html>
+<head>	
+	<title>page turn over</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+	}
+	html,body{
+		height: 100%;
+	}
+	body{
+		background: url(img/rou0.jpg) no-repeat center/cover;
+	}
+	.wrapper{
+		position: relative;	
+		width: 640px;
+		height: 360px;
+		margin: 100px auto;
+		background: url(img/rou0.jpg);
+		perspective:800px;
+	}
+	.left, .right{
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		width: 50%;
+		height: 100%;
+	}
+	.left{
+		/*border: 1px solid #f40;*/
+		transform: rotateY(0deg);
+		transform-origin:left;
+		transform-style:preserve-3d;
+		z-index: 1;		
+	}
+	.left.on{
+		transition: 1s;
+		transform: rotateY(-180deg);
+	}
+	.right{
+		/*border: 1px solid #079;*/
+		background: url(img/rou1.jpg) no-repeat right top;
+	}
+	.prev, .next{
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+	}
+	.prev{
+		/*图片定位在右上*/
+		background: url(img/rou0.jpg) no-repeat right top;
+	}
+	.next{
+		/*图片定位在左上*/
+		background: url(img/rou1.jpg) no-repeat left top;
+		transform:translateZ(-1px) scale(-1,1);
+	}	
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="left">
+			<div class="prev"></div>
+			<div class="next"></div>
+		</div>
+		<div class="right"></div>
+	</div>
+	<script>
+	let oBody=document.querySelector('body'),
+	oWrap=document.querySelector('.wrapper'),
+	oLeft=document.querySelector('.left'),
+	oPrev=document.querySelector('.prev'),
+	oRight=document.querySelector('.right'),
+	oNext=document.querySelector('.next'),
+	index=0,
+	len=8;
+	oWrap.onclick=function(){
+		index++;
+		index%=len;
+		// left.style.transform="rotateY(-180deg)";
+		oLeft.classList.add('on');
+		document.addEventListener('transitionend',function(){
+			oLeft.classList.remove('on');
+			oBody.style.backgroundImage="url('img/rou"+index+".jpg')";
+			oWrap.style.backgroundImage="url('img/rou"+index+".jpg')";
+			oPrev.style.backgroundImage="url('img/rou"+index+".jpg')";
+			oNext.style.backgroundImage="url('img/rou"+(index+1)%len+".jpg')";
+			oRight.style.backgroundImage="url('img/rou"+(index+1)%len+".jpg')";
+		})
+	}
+	
+	</script>
+</body>
+</html>

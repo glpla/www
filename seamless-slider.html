@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>seamless-slider</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    background-color: #999;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #slider {
+    position: relative;
+    width: 640px;
+    height: 360px;
+    margin: 40px auto;
+    /* overflow: hidden; */
+  }
+
+  .imgs ul {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    width: 1000%;
+    transition: all 0.4s ease;
+  }
+
+  .imgs ul li {
+    float: left;
+    width: 640px;
+    height: 360px;
+  }
+
+  .tab ul {
+    position: absolute;
+    bottom: 4px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .tab ul li {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .tab ul li.on {
+    background-color: rgba(255, 0, 0, 1.0);
+  }
+
+  .btn div {
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    width: 30px;
+    line-height: 60px;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+  }
+
+  .btn div:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  #pre {
+    left: 0;
+  }
+
+  #next {
+    right: 0;
+  }
+</style>
+
+
+<body>
+  <div id='slider'>
+    <div class="imgs">
+      <ul>
+        <!-- 为了实现无缝slider在前面加上最后一张img -->
+        <li><img src="img/rou3.jpg" alt=""></li>
+        <li><img src="img/rou0.jpg" alt=""></li>
+        <li><img src="img/rou1.jpg" alt=""></li>
+        <li><img src="img/rou2.jpg" alt=""></li>
+        <li><img src="img/rou3.jpg" alt=""></li>
+        <!-- 为了实现无缝slider在后面加上第一张img -->
+        <li><img src="img/rou0.jpg" alt=""></li>
+      </ul>
+    </div>
+    <div class="tab">
+      <ul>
+        <li class='on'></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="btn">
+      <div id="pre">&lt;</div>
+      <div id="next">&gt;</div>
+    </div>
+  </div>
+  <script>
+    window.onload = function () {
+      let oSlider = document.getElementById('slider'),
+        oUl = document.getElementsByTagName('ul')[0],
+        oImgs = oUl.getElementsByTagName('li'),
+        imgLen = oImgs.length,
+        imgWidth = oSlider.offsetWidth,
+        oTabLi = document.getElementsByTagName('ul')[1].getElementsByTagName('li'),
+        oPre = document.getElementById('pre'),
+        oNext = document.getElementById('next'),
+        index = 1,
+        imgIndex = 1;
+      oUl.style.left = -imgWidth + 'px';
+      for (let i = 0; i < oTabLi.length; i++) {
+        oTabLi[i].index = i;
+        oTabLi[i].onclick = function () {
+          for (let i = 0; i < oTabLi.length; i++) {
+            oTabLi[i].className = '';
+          }
+          this.className = 'on';
+          index = imgIndex = this.index;
+          oUl.style.left = -(imgIndex + 1) * imgWidth + 'px';
+        }
+      }
+      oNext.onclick = function () {
+        if (index < imgLen - 2) {
+          index++;
+          for (let i = 0; i < oTabLi.length; i++) {
+            oTabLi[i].className = '';
+          }
+          oTabLi[index - 1].className = 'on';
+          oUl.style.left = -index * imgWidth + 'px';
+        } else {
+          console.log(index);
+          oUl.style.left = -(imgLen - 1) * imgWidth + 'px';
+          index = 1;
+          for (let i = 0; i < oTabLi.length; i++) {
+            oTabLi[i].className = '';
+          }
+          oTabLi[index - 1].className = 'on';
+
+        }
+      }
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

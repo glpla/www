@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>zoom</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
+  <!-- <script src='js/vue.min.js'></script> -->
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #box {
+      position: relative;
+      width: 640px;
+      height: 180px;
+      border: 1px solid #999;
+      margin: 20px auto;
+    }
+
+    #wrap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 320px;
+      height: 180px;
+    }
+
+    #img {
+      width: 100%;
+      height: 100%;
+    }
+
+    #img img {
+      width: 100%;
+      height: 100%;
+    }
+
+    #dragger {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 20px;
+      height: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #f40;
+    }
+
+    #mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 320px;
+      height: 180px;
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    #dis {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 320px;
+      height: 180px;
+      background-color: #f40;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div id="wrap">
+      <div id="img">
+        <img src="img/rou.jpg" alt="">
+      </div>
+      <div id="dragger"></div>
+      <div id="mask"></div>
+    </div>
+    <div id="dis"></div>
+  </div>
+
+</body>
+<script>
+  window.onload = function () {
+    let oBox = document.getElementById('box'),
+      oWrap = document.getElementById('wrap'),
+      oDragger = document.getElementById('dragger'),
+      oMask = document.getElementById('mask');
+    oDragger.style.display = 'none';
+    oWrap.onmouseover = function () {
+      oDragger.style.display = 'block';
+    }
+    oWrap.onmouseout = function () {
+      oDragger.style.display = 'none';
+    }
+    oWrap.onmousemove = function (ev) {
+      let e = ev || window.event,
+        left = (e.clientX || e.pageX) - oDragger.offsetWidth / 2 - oBox.offsetLeft,
+        top = (e.clientY || e.pageY) - oDragger.offsetHeight / 2 - oBox.offsetTop;
+      oDragger.style.left = left + 'px';
+      oDragger.style.top = top + 'px';
+    }
+  }
+</script>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>demo</title>
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<!-- <link rel="stylesheet" href="js/bootstrap-3.3.7-dist/css/bootstrap.min.css"> -->
+	<!-- <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script> -->
+	<!-- <script src="js/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> -->
+	<!-- <script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script> -->
+	<script src="js/vue.min.js"></script>
+
+	<style>
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			line-height: 1.5;
+		}
+
+
+
+		.modal-btn {
+			padding: 1rem 1.2rem;
+			background: coral;
+			color: #fff;
+			border: 0;
+		}
+
+		.wrap {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.4)
+		}
+
+		.modal-btn:hover {
+			background: #333;
+		}
+
+		.modal-cont {
+			width: 80%;
+			margin: 60px auto;
+			background: #f4f4f4;
+			box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.16);
+			border-radius: 10px;
+			overflow: hidden;
+		}
+
+		.modal-header {
+			background: coral;
+			color: #fff;
+			padding: 15px;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.modal-header h2,
+		.modal-foot h3 {
+			margin: 0;
+		}
+
+		.modal-body {
+			padding: 15px;
+		}
+
+		.modal-close {
+			color: #fff;
+			font-size: 1.5rem;
+		}
+
+		.modal-close:hover {
+			color: #000;
+			cursor: pointer;
+		}
+
+		.modal-foot {
+			background: coral;
+			color: #fff;
+			padding: 10px;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<button id='e-btn' class='modal-btn'>
+		click
+	</button>
+
+	<div id='e-wrap' class='wrap'>
+		<div id='e-cont' class="modal-cont">
+			<div class="modal-header">
+				<h2> Modal title </h2>
+				<span id='e-close' class='modal-close'>&times;</span>
+			</div>
+			<div class="modal-body">
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum tenetur soluta eius dolorum neque cupiditate
+					deleniti magnam ducimus atque in!</p>
+				<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, deserunt harum excepturi enim iste itaque
+					recusandae soluta quos est laboriosam culpa dolorum nesciunt a quis distinctio, exercitationem delectus odit
+					mollitia.</p>
+			</div>
+			<div class="modal-foot">
+				<h3>modal foot</h3>
+			</div>
+		</div>
+
+	</div>
+	<script>
+		let wrap = document.getElementById('e-wrap');
+		let btn = document.getElementById('e-btn');
+		let close = document.getElementById('e-close');
+		let cont = document.getElementById('e-cont');
+
+		btn.addEventListener('click', () => {
+			wrap.style.display = 'block'
+		})
+		close.addEventListener('click', () => {
+			wrap.style.display = 'none'
+		})
+		window.addEventListener('click', (e) => {
+			if (e.target == wrap) {
+				wrap.style.display = 'none'
+			}
+		})
+	</script>
+</body>
+
+</html>

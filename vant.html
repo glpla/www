@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>vant</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="icon" href="img/demo.ico">
+	<script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/vant/lib/index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@1.4/lib/vant.min.js"></script>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+			text-decoration: none;
+			list-style: none;
+			outline: none;
+			border: none;
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+
+		.icon-wrap {
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.icon-wrap i {
+			font-size: 30px;
+			color: #009688;
+		}
+
+		.form-size {
+			width: 800px;
+			margin: 10px auto;
+		}
+
+		h3,
+		h5 {
+			text-align: center;
+		}
+
+		.bar {
+			width: 800px;
+			height: 160px;
+			margin: 10px auto;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+
+		}
+
+		.bar-small {
+			width: 800px;
+			height: 30px;
+			margin: 10px auto;
+		}
+
+		.bar-middle {
+			width: 800px;
+			height: 60px;
+			margin: 10px auto;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<h3 class="title">icon</h3>
+		<div class="icon-wrap form-size">
+			<div>
+				<van-icon name="contact" color='#f40' />
+			</div>
+			<div>
+				<van-icon name="star" size='32px' />
+			</div>
+			<div>
+				<van-icon name="edit" info='glpla' />
+			</div>
+			<div>
+				<van-icon name="passed" />
+			</div>
+			<div>
+				<van-icon name="records" />
+			</div>
+			<div>
+				<van-icon name="cart" />
+			</div>
+
+		</div>
+		<h3 class="title">progress</h3>
+		<div class='bar'>
+			<div>
+				<van-progress :percentage="perVant" />
+			</div>
+			<div>
+				<van-progress inactive :percentage="perVant" />
+			</div>
+			<div>pivot-text自定义文字，color自定义进度条颜色</div>
+			<div>
+				<van-progress :pivot-text="perVant+'%'" color="#f2826a" :percentage="perVant" />
+			</div>
+			<div>
+				<van-progress :pivot-text="perVant+'%'" color="#f44" :percentage="perVant" />
+			</div>
+			<div>
+				<van-progress :pivot-text="perVant+'%'" :percentage="perVant" pivot-color="#7232dd" color="linear-gradient(to right, #be99ff, #7232dd)" />
+			</div>
+		</div>
+		<div style="text-align: center">
+			<van-button type="primary" size="small" @click='setPer'>50%</van-button>
+			<van-button type="primary" size="small" round='true' text='70' @click='setPerUp'></van-button>
+		</div>
+		<h3 class="title">slider</h3>
+		<div class="bar-small">
+			<van-slider v-model="value0" @change="onChange" bar-height='2px' :min="0" :max="100" :step='1' />
+		</div>
+		<div class="bar-middle">
+			<van-circle v-model="currentRate" :rate="90" :speed="100" :text="text" size='50px' />
+		</div>
+		<div class="bar-small">
+			<van-switch-cell v-model="checked0" title="关闭信息提示" size='16px' />
+		</div>
+		<div class="bar-small">
+			<van-switch-cell v-model="checked1" title="关闭语音提示" size='16px' />
+		</div>
+		<div class="bar-small">
+			<van-stepper v-model="stepValue" :min="1" :max="10" :step="1" integer />
+		</div>
+
+	</div>
+
+	<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+	<script src="https://unpkg.com/vant/lib/vant.min.js"></script>
+
+	<script>
+		let vm = new Vue({
+			el: "#app",
+			data: {
+				per: 30 + '%',
+				perVant: 20,
+				value0: 15,
+				value: 15,
+				currentRate: 0,
+				checked0: true,
+				checked1: true,
+				stepValue: 10
+			},
+			methods: {
+				setPer() {
+					this.per = 50 + '%';
+					this.perVant = 10;
+				},
+				setPerUp() {
+					this.perVant = 70;
+				},
+				onChange(value) {
+					this.$toast('当前值：' + value);
+				}
+			},
+			computed: {
+				text() {
+					return this.currentRate.toFixed(0) + '%'
+				}
+			}
+		})
+
+		// console.log(layui.device());
+	</script>
+</body>
+
+</html>

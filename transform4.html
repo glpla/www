@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>transform demo</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/vue.min.js"></script>
+</head>
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #151515;
+  }
+
+  #app {
+    height: 100%;
+    width: 100%;
+  }
+
+  .txt-center {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+
+  .wrap {
+    position: relative;
+    width: 100%;
+    height: 30%;
+    background: #151515;
+    text-align: center;
+  }
+
+  .wrap::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 92px;
+    width: 800px;
+    height: 1px;
+    margin: 0 0 0 -400px;
+    background: -webkit-linear-gradient(left, #151515, #444, #151515);
+  }
+
+  .wrap::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 91px;
+    width: 800px;
+    height: 1px;
+    margin: 0 0 0 -400px;
+    background: -webkit-linear-gradient(left, #151515, #000, #151515);
+  }
+
+
+  .wrap form {
+    position: relative;
+    background: linear-gradient(#1b1b1b, #111);
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 1px #272727;
+    display: inline-block;
+    font-size: 0px;
+    margin: 50px auto 0;
+    padding: 20px;
+    z-index: 1;
+  }
+
+
+  .wrap input {
+    background: linear-gradient(#333, #222);
+    border: 1px solid #444;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 2px 0 #000;
+    color: #888;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: 400;
+    height: 40px;
+    width: 200px;
+    margin: 0;
+    padding: 0 10px;
+    text-shadow: 0 -1px 0 #000;
+  }
+
+  .wrap input:focus {
+    animation: glow 800ms ease-out infinite alternate;
+    background: linear-gradient(#333933, #222922);
+    border-color: #393;
+    box-shadow: 0 0 5px rgba(0, 255, 0, .2), inset 0 0 5px rgba(0, 255, 0, .1), 0 2px 0 #000;
+    color: #efe;
+    outline: none;
+  }
+
+  @keyframes glow {
+    0% {
+      border-color: #393;
+      box-shadow: 0 0 5px rgba(0, 255, 0, .2), inset 0 0 5px rgba(0, 255, 0, .1), 0 2px 0 #000;
+    }
+
+    100% {
+      border-color: #6f6;
+      box-shadow: 0 0 20px rgba(0, 255, 0, .6), inset 0 0 10px rgba(0, 255, 0, .4), 0 2px 0 #000;
+    }
+  }
+
+  .wrap button {
+    background: linear-gradient(#333, #222);
+    border: 1px solid #444;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 2px 0 #000;
+    color: #fff;
+    float: left;
+    font-size: 14px;
+    font-weight: 400;
+    height: 40px;
+    width: 80px;
+    margin: 0;
+    padding: 0 10px;
+    text-shadow: 0 -1px 0 #000;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .wrap button:hover {
+    background: linear-gradient(#393939, #292929);
+    color: #5f5;
+  }
+
+  .search {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    background: #151515;
+  }
+
+  .search::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 80px;
+    width: 800px;
+    height: 1px;
+    margin: 0 0 0 -400px;
+    background: -webkit-linear-gradient(left, #151515, #444, #151515);
+  }
+
+  .search::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 79px;
+    width: 800px;
+    height: 1px;
+    margin: 0 0 0 -400px;
+    background: -webkit-linear-gradient(left, #151515, #000, #151515);
+  }
+
+  .search form {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    padding: 20px;
+    background: #151515;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 1px #272727;
+    margin: 40px auto 0;
+    border: 1px solid #111;
+    z-index: 1;
+  }
+
+  .search input {
+    display: block;
+    width: 200px;
+    height: 40px;
+    padding: 0 10px;
+    color: #888;
+    font-size: 14px;
+    text-shadow: 0 -1px 0 #000;
+    background: linear-gradient(#333, #222);
+    border: 1px solid #444;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 2px 0 #000;
+    float: left;
+    outline: none;
+  }
+
+  .search input:focus {
+    background: linear-gradient(#333933, #222922);
+    animation: glow 0.8s ease-in-out alternate infinite;
+  }
+
+  .search button {
+    width: 80px;
+    height: 40px;
+    color: #fff;
+    font-size: 14px;
+    background: linear-gradient(#333, #222);
+    border: 1px solid #444;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 2px 0 #000;
+    outline: none;
+  }
+
+  .search button:hover {
+    background: linear-gradient(#393939, #292929);
+    color: #5f5;
+  }
+
+  .fade {
+    position: relative;
+    background: #151515;
+  }
+
+  .fade::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 1px;
+    width: 800px;
+    height: 1px;
+    margin-left: -400px;
+    background: -webkit-linear-gradient(left, #151515, #444, #151515);
+  }
+
+  .fade::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 800px;
+    height: 1px;
+    margin-left: -400px;
+    background: -webkit-linear-gradient(left, #151515, #000, #151515);
+  }
+</style>
+
+<body>
+  <div id="app">
+    <!-- <p class='txt-center'>{{tips}}</p> -->
+    <div class="wrap">
+      <form action="#">
+        <input type="search" placeholder="what are you looking for?">
+        <button>search</button>
+      </form>
+    </div>
+    <div class="search">
+      <form action="#">
+        <input type="search" placeholder="what are you looking for?">
+        <button>search</button>
+      </form>
+    </div>
+    <div class="fade"></div>
+  </div>
+
+</body>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+      tips: 'welcome to glpla\' site'
+    },
+    methods: {}
+  })
+</script>
+
+</html>

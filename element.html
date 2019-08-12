@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>element</title>
+    <link rel="icon" href="img/demo.ico">
+
+    <!-- hilight.js -->
+    <link rel="stylesheet" href="js/highlight/styles/default.css">
+    <script src="js/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <!-- vue -->
+    <script src="https://cdn.bootcss.com/vue/2.4.3/vue.min.js"></script>
+
+    <!-- element -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style>
+        html{
+            font-size: 62.5%;
+            /* font-size: 10px; */
+        }
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;           
+        }
+        .ul{
+            display: flex;
+            background: #ccc;
+            justify-content: space-between;
+        }
+        .ul li{
+            width: 20px;
+            height: 20px;            
+            text-align: center;
+            background: #f40;
+        }
+        a{
+            text-decoration: none;
+        }
+        .half{
+            width: 100px;
+            height: 200px;
+            background-color: #fff;
+            margin: 20px auto;
+            border-radius: 50%;
+            border-left: 100px solid #000;
+        }
+        .wrap{
+            border: 1px solid #ccc;
+            padding: 0.8rem;
+            width: 90%;
+            height: 300px;
+            margin: 5px auto;
+            border-radius: 10px;
+            background: #ccc;            
+        }
+        .flex{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .title{
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+        }
+        .sub-title{
+            margin-bottom: 0.4rem;
+        }
+        .img{
+            text-align: right;
+            position: relative;
+            padding: 0.4rem;
+        }
+        .img img{
+            position:absolute;
+            right: 0;
+            transition: all 0.5s ease;
+        }
+        .wrap:hover .img img{
+            right: 40px;
+        }
+        .bar{
+            display: inline-block;
+            width: 120px;
+            height: 60px;
+            margin: 10px auto;
+            vertical-align: middle
+        }        
+        .bar>div{
+            display: inline-block;
+            width: 6px;
+            height: 100%;
+            background: #079;
+            animation: scale 1s ease-in-out infinite alternate;
+        }
+        .bar>div:nth-child(1){
+            animation-delay: 0s;
+        }
+        .bar>div:nth-child(2){
+            animation-delay: -0.2s;
+        }
+        .bar>div:nth-child(3){
+            animation-delay: -0.4s;
+        }
+        .bar>div:nth-child(4){
+            animation-delay: -0.6s;
+        }
+        .bar>div:nth-child(5){
+            animation-delay: -0.8s;
+        }        
+        .bar>div:nth-child(6){
+            animation-delay: -1s;
+        }
+        .bar>div:nth-child(7){
+            animation-delay: -1.2s;
+        }
+        .bar>div:nth-child(8){
+            animation-delay: -1.4s;
+        }
+        .bar>div:nth-child(9){
+            animation-delay: -1.6s;
+        }
+        .bar>div:nth-child(10){
+            animation-delay: -1.8s;
+        }        
+        @keyframes scale {
+            0%{
+               transform: scaleY(0.2);
+            }
+            100%{
+                transform: scaleY(1);
+            }
+        }        
+        .first-char-down::first-letter{
+            font-size: 2.2rem;
+            float: left;
+            color: #f00;
+        }        
+        .circle{
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+        .circle>div{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #67cf22;
+            border-radius: 50%;
+            animation: zoom 2s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        .circle>div:nth-child(2){            
+            animation-delay: -1s
+        }
+        @keyframes zoom{
+            0%,100%{
+                transform: scale(0.0);
+            }
+            50%{
+                transform: scale(1.0);
+            }
+        }
+        .egg{
+            width: 100px;
+            height: 160px;
+            background: #fff;
+            border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+            box-shadow: 0 0 20px rgb(213, 216, 13);
+        }
+        .semi-circle{
+            width: 100px;
+            height: 50px;
+            background: #67cf22;
+            border-radius: 100px 100px 0 0;
+        }
+        .border-triangle{
+            width: 0px;
+            height: 0px;
+            margin: 10px auto;
+            border-top:50px solid #f66;
+            border-right:50px solid #079;
+            border-bottom:50px solid #907;
+            border-left:50px solid #090;            
+        }
+        .search-wrap{            
+            font-size: 0;
+        }
+        .search-wrap .input{
+            box-sizing: border-box;
+            width: 160px;
+            height: 32px;
+            padding: 4px;
+            line-height: 32px;
+            /* border: 1px solid #f40; */
+            border: none;
+            outline: none;
+            font-size: 16px;
+            vertical-align: bottom;
+        }
+        .search-wrap .btn{
+            width: 80px;
+            height: 32px;            
+            line-height: 30px;
+            /* border: 1px solid #f40; */
+            border: none;
+            outline: none;
+            font-size: 16px;
+            vertical-align: bottom;
+        }
+        .round-wrap{
+            width: 240px;
+            height: 32px;
+            border: 1px solid #097;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top:10px;
+            font-size: 0;
+        }
+        .round-wrap .input{
+            box-sizing: border-box;
+            width: 160px;
+            height: 100%;
+            padding: 4px;
+            font-size: 16px;
+            border: none;
+            outline: none;
+        }
+        .round-wrap .btn{
+            width: 80px;
+            height: 100%;
+            font-size: 16px;
+            background: #097;
+            color: #fff;
+            border: none;
+            outline: none;
+        }
+        .price-label{
+            width: 240px;
+            height: 32px;
+            margin-top: 10px;
+            font-size: 0;
+            background: #079;   
+            /* display: flex; */
+        }
+        .price-label .new{
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+            line-height: 32px;
+            font-size: 1.6rem;
+            background: #fff;
+            text-align: center;            
+        }
+        .price-label .old{
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+            line-height: 32px;
+            font-size: 1.6rem;
+            background: #f40;
+            text-decoration: line-through;
+            text-align: center;            
+        }
+        .center-before-img{
+            text-align: center;
+            /* overflow: hidden; */
+        }
+        .center-before-img::before{
+            content: url(./img/rou1.jpg);            
+            display: inline-block;
+            width: 200px;
+            height: 150px;
+            /* padding: 4px; */
+            overflow: hidden;
+            border: 1px solid #fff;
+            font-size: 0;
+        }
+        .test{
+            height: 120px;
+            background: #f40;
+            border-radius: 10px;
+        }
+        .l-u{
+            height: 30px;
+            background: #907;
+            border-radius: 10px;
+        }
+        .l-d{
+            height: 90px;
+            background: #079;
+            border-radius: 10px;
+        }
+        .pre-title-bar{
+            position: relative;            
+            font-size: 4rem;
+            color: #fff;
+            transition: all 0.5s ease;
+        }
+        .pre-title-bar::before{
+            content: "\5B";              
+            position: absolute;
+            left: -0px;
+            top: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        .pre-title-bar::after{
+            content: "\5D";
+            position: absolute;
+            right: -0px;
+            top: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        .pre-title-bar:hover::before{            
+            left: -20px;
+            opacity: 1;
+            color: #f40;            
+        }
+        .pre-title-bar:hover::after{            
+            right: -20px;            
+            opacity: 1;
+            color: #f40;            
+        }
+        .pre-title-bar:hover{
+            transform: scale(1.1);
+            color: #f40;
+        }
+        .pre-title-down{
+            color: #fff;
+            font-size: 4rem;
+            position: relative;
+            top: 0;
+            transition: all 0.4s ease;
+        }
+        .pre-title-down::before{
+            content: '';            
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            bottom: 0;
+            background: #fff;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .pre-title-down:hover:before{            
+            bottom: 3px;            
+            opacity: 1;    
+        }
+        .pre-title-down:hover{
+            color: #079;
+            top:-3px;
+        }
+        .pre-title-plate{
+            position: relative;
+            background: #fff;
+            width: 180px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            font-size: 4rem;
+            color: #097;
+            overflow: hidden;
+        }
+        .pre-title-plate::before{
+            content: 'HOME';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: -100%;
+            left: 0;
+            background: #097;
+            color: #fff;
+            transition: all 0.4s ease;
+        }
+        .pre-title-plate:hover:before{            
+            bottom: 0;            
+            background: #097;
+            color: #fff;
+        }
+        .pre-title-3d-wrap{            
+            perspective: 1000px;
+        }
+        .pre-title-3d{
+            width:180px;
+            height: 60px;
+            position: relative;
+            transform-style: preserve-3d;
+			transform-origin: center;
+            transition: all 2s ease;
+            cursor: pointer;
+        }
+        .pre-title-3d .front,
+        .pre-title-3d .bottom,
+        .pre-title-3d .top,
+        .pre-title-3d .back{
+            width: 180px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            font-size: 4rem;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transform-style: preserve-3d;
+        }
+        .pre-title-3d .front{
+            background: #fff;
+            color: #097;
+            transform: translateZ(30px);
+        }   
+        .pre-title-3d .back{
+            background: #fff;
+            color: #097;
+            transform: translateZ(-30px) rotateX(180deg);
+        }     
+        .pre-title-3d .top{
+            background: #097;
+            color: #fff;
+            transform: translateY(-30px) rotateX(90deg);
+        }        
+        .pre-title-3d .bottom{
+            background: #097;
+            color: #fff;            
+            transform: translateY(30px) rotateX(-90deg);
+        }
+        .pre-title-3d:hover{
+            transform: rotateX(360deg);
+        }
+        .pre-title-lr-wrap{
+            perspective: 1000px;
+        }        
+        .pre-title-lr{
+            position: relative;
+            width: 180px;
+            height: 60px;
+            transform-style: preserve-3d;
+			transform-origin: center;
+            transition: all 4s ease;
+            cursor: pointer;
+        }
+        .pre-title-lr .front,
+        .pre-title-lr .left,
+        .pre-title-lr .back,
+        .pre-title-lr .right{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            line-height: 60px;
+            text-align: center;
+            font-size: 4rem;
+            top: 0;
+            left: 0;
+            transform-style: preserve-3d;
+        }
+        .pre-title-lr .front{
+            color: #f66;
+            background: #fff;
+            transform: translateZ(80px);
+        }
+        .pre-title-lr .back{
+            color: #f66;
+            background: #fff;
+            transform: translateZ(-80px) rotateY(180deg);
+        }
+        .pre-title-lr .left{
+            color: #fff;
+            background: #f66;
+            transform:  translateX(-80px) rotateY(-90deg);
+        }
+        .pre-title-lr .right{
+            color: #fff;
+            background: #f66;
+            transform:  translateX(80px) rotateY(90deg);
+        }
+        .pre-title-lr:hover{
+            transform: rotateY(360deg);
+        }
+        .nav-3d-wrap{
+            perspective: 1000px;
+        }
+        .nav-3d{
+            width: 180px;
+            height: 60px;
+            position: relative;
+            transform-origin: center;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .nav-3d .front,
+        .nav-3d .back{
+            width: 100%;
+            height: 100%;
+            font-size: 4rem;
+            line-height: 60px;
+            text-align: center;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transform-style: preserve-3d;
+        }
+        .nav-3d .front{
+            color: #907;
+            background: #fff;
+        }
+        .nav-3d .back{
+            transform-origin: top;
+            color: #fff;
+            background: #907;
+            transform: rotateX(270deg);
+            transition: all 0.4s ease;
+        }
+        .nav-3d:hover .back{
+            transform: rotateX(0deg);
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div id="app">
+        <el-row :gutter="0">
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class='wrap'>
+                    <div class='title'>title</div>
+                    <div class='sub-title'>welcome</div>
+                    <div class="img">
+                        <img src="./img/rou.jpg" alt="">
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class="half"></div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class="bar">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap">
+                    <h1>垂直居中-1</h1>
+                    <!-- <p>内容div.box应显示的指定宽高和inline-block及vertical-align:middle </p> -->
+                    <!-- <p>辅助div.bak应显示的指定宽(0)高(100%)和inline-block及vertical-align:middle</p> -->
+                    <!-- <p>好麻烦的说.还是直接外加div设为flex模式吧.</p> -->
+                    <p>居中的元素和父级都应该显示的指定宽高</p>
+                    <p>垂直居中(不管你1个还是几个元素):外加div:</p>
+                    <pre>
+<code>
+    .flex{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+</code>
+                    </pre>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap">
+                    <h1>垂直居中-2</h1>
+                    <p>居中的元素和父级都应该显示的指定宽高</p>
+                    <p>通过移位使元素居中:</p>
+                    <pre>
+<code>
+.vertical {    
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+</code>
+                    </pre>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap">
+                    <div class='first-char-wrap'>
+                        <h1>首字下沉</h1>
+                        <p class="first-char-down">需指定首字的大小和颜色以突出显示,同时,要设置左浮动float:left;需要每个段落都指定样式.如果同一个段落里包扩了多个段落,那只有第一个段落有效果.</p>
+                        <p class="first-char-down">Borem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+                            ipsum molestias officiis eum
+                            veritatis labore corporis eius nostrum animi consequatur.</p>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class="circle">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class="egg"></div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class="semi-circle"></div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class="border-triangle"></div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap">
+                    <p>利用font-size:0;实现input和button无缝对接</p>
+                    <div class='search-wrap'>
+                        <input class='input' type="text" placeholder="glpla, welcome." maxlength="10">
+                        <button class='btn'>Click Me</button>
+                    </div>
+                    <div class='round-wrap'>
+                        <input class='input' type="text" placeholder="glpla, welcome." maxlength="10">
+                        <button class='btn'>Click Me</button>
+                    </div>
+                    <div class="price-label">
+                        <div class="new">¥499</div>
+                        <div class="old">¥1299</div>
+                    </div>
+                    <p>
+                        .凡inline或inline-block属性的元素,都是文本类元素,具有文本特性,即:元素和元素间有一定的的分割,不会无缝拼接在一起.所以1个盒子里放不下各为50%的2个子元素.解决的方法有:
+                        ①指定父元素的字体大小为0.当然需要另外指定子元素的字体大小;
+                        ②将2个子元素写在一行.这样渲染DOM的时候,就不会渲染HTML文档的回车等相关标记;
+                        ③用float.(针对块元素,故inline等模式时,CSS样式会有绿色的警告提示.视IDE而不同);
+                        ④用flex.强烈推荐.最为省心,根本就不用管元素是什么inline不inline.
+                    </p>
+
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap">
+                    <p class="center-before-img"><br>利用<code>::before</code>和<code>&lt;br&gt;</code>实现居中图文</p>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <a class='pre-title-bar' href="#">HOME</a>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <a class='pre-title-down' href="#">HOME</a>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <a class='pre-title-plate' href="#">HOME</a>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class='pre-title-3d-wrap'>
+                        <div class='pre-title-3d'>
+                            <div class='front'>FRONT</div>
+                            <div class='bottom'>BOTTOM</div>
+                            <div class='back'>BACK</div>
+                            <div class='top'>TOP</div>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class='pre-title-lr-wrap'>
+                        <div class='pre-title-lr'>
+                            <div class='front'>FRONT</div>
+                            <div class='left'>LEFT</div>
+                            <div class='back'>BACK</div>
+                            <div class='right'>RIGHT</div>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+                <div class="wrap flex">
+                    <div class="nav-3d-wrap">
+                        <div class="nav-3d">
+                            <div class="front">FRONT</div>
+                            <div class="back">BACK</div>
+                        </div>
+                    </div>
+                </div>
+            </el-col>
+
+        </el-row>
+        <el-row>
+            <el-col :span='12'>
+                <el-row>
+                    <el-col :span='6'>
+                        <div class="l-u">6</div>
+                    </el-col>
+                    <el-col :span='6'>
+                        <div class="l-u">6</div>
+                    </el-col>
+                    <el-col :span='6'>
+                        <div class="l-u">6</div>
+                    </el-col>
+                    <el-col :span='6'>
+                        <div class="l-u">6</div>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col span='12'>
+                        <div class="l-d">12</div>
+                    </el-col>
+                    <el-col span='12'>
+                        <div class="l-d">12</div>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col :span='12'>
+                <div class="test">12</div>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="12">
+                <div>el-row 利用 <code>:gutter</code> 指定el-col之间的间隔，默认为 0</div>
+            </el-col>
+            <el-col :span="12">
+                <div>el-col 利用 <code>:span</code> 指定每列的宽度</div>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="4">
+                <div>xs:&lt;768px</div>
+            </el-col>
+            <el-col :span="4">
+                <div>sm:≥768px</div>
+            </el-col>
+            <el-col :span="4">
+                <div>md:≥992px</div>
+            </el-col>
+            <el-col :span="4">
+                <div>lg:≥1200px</div>
+            </el-col>
+            <el-col :span="4">
+                <div>xl:≥1920px</div>
+            </el-col>
+            <el-col :span="4">
+                <div>4</div>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24">
+                <h3>button</h3>
+                <p>&lt;el-button type='text'&gt;text&lt;/el-button&gt;</p>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span=4>
+                <el-button>default</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='primary'>primary</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='danger'>danger</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='success'>success</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='warning'>warning</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='info'>info</el-button>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24">
+                <h3>button:plain</h3>
+                <p>&lt;el-button type='text' plain&gt;text&lt;/el-button&gt;</p>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span=4>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='primary' plain>primary</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='danger' plain>danger</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='success' plain>success</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='warning' plain>warning</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='info' plain>info</el-button>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24">
+                <h3>button:round</h3>
+                <p>&lt;el-button type='text' round&gt;text&lt;/el-button&gt;</p>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span=4>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='primary' round>primary</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='danger' round>danger</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='success' round>success</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='warning' round>warning</el-button>
+            </el-col>
+            <el-col :span=4>
+                <el-button type='info' round>info</el-button>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24">
+                <h3>button:circle</h3>
+                <p>&lt;el-button type='text' circle&gt;text&lt;/el-button&gt;</p>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span=9>
+                circle一般配合图形使用,如字体图标
+            </el-col>
+            <el-col :span=3>
+                <el-button type='primary' circle><i class='el-icon-error'></i></el-button>
+            </el-col>
+            <el-col :span=3>
+                <el-button type='danger' circle><i class='el-icon-info'></i></el-button>
+            </el-col>
+            <el-col :span=3>
+                <el-button type='success' circle><i class='el-icon-success'></i></el-button>
+            </el-col>
+            <el-col :span=3>
+                <el-button type='warning' circle><i class='el-icon-warning'></i></el-button>
+            </el-col>
+            <el-col :span=3>
+                <el-button type='info' circle><i class='el-icon-question'></i></el-button>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="24">
+                <h3>button:other</h3>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span=4>
+                禁用 <el-button type='primary' disabled>disabled</el-button>
+            </el-col>
+            <el-col :span=4>
+                文字 <el-button type='text'>text</el-button>
+            </el-col>
+            <el-col :span=4>
+                icon <el-button type="primary" icon="el-icon-delete"></el-button>
+            </el-col>
+            <el-col :span=4>
+                加载 <el-button type="primary" :loading="true">加载</el-button>
+            </el-col>
+            <el-col :span=6>
+                按钮组
+                <el-button-group>
+                    <el-button type="primary" icon="el-icon-arrow-left"></el-button>
+                    <el-button type="primary">||</el-button>
+                    <el-button type="primary" icon="el-icon-arrow-right"></el-button>
+                </el-button-group>
+            </el-col>
+        </el-row>
+        <el-row>
+            图标按钮有二种方式可以实现:利用button的icon属性来指定,或指定按钮的文字为字体图标
+        </el-row>
+    </div>
+
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {}
+    })
+</script>
+
+</html>

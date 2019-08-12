@@ -1,0 +1,130 @@
+<html>
+<head>
+	<title>toggle-slideToggle-fadeToggle</title>
+	<meta charset="utf-8">	
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		text-decoration: none;
+		font-family: "Hiragino Sans GB W3","微软雅黑";
+		font-size: 14px;
+		border: none;
+		outline: none;
+	}
+	body{
+		background: #ddd;
+	}
+	.flex{
+		display: flex;
+		justify-content:space-around;
+		align-items:center;
+	}
+	.row{
+		flex-direction:row;
+	}
+	.col{
+		flex-direction:column;
+	}
+	.nav{
+		width: 280px;
+		height: 30px;
+		background: #f40;
+		line-height: 30px;
+		cursor: pointer;
+		color: #fff;
+	}
+	.nav:hover{
+		background: #8B0000;
+	}
+	.nav div{
+		/*border: 1px solid #fff;*/
+		/*width: 120px;*/
+	}
+	.login{
+		width: 260px;
+		height: 128px;
+		background: #ccc;
+		padding: 10px;
+		margin-top:2px;
+	}
+	.login-item{
+		width: 265px;
+		height: 30px;
+		border-radius: 6px;
+		text-align: center;
+	}
+	.login-item input{
+		width: 180px;
+		height: 30px;
+		padding-left: 5px;
+		border-top-right-radius: 6px;
+		border-bottom-right-radius: 6px;
+		font-size: 14px;
+	}
+	.login-item div{
+		width: 85px;
+		height: 30px;
+		line-height: 30px;
+		background: #808080;
+		text-align: center;
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+		color: #fff;
+	}
+	.btn{
+		background: #fff;
+		line-height: 30px;
+		cursor: pointer;
+	}
+	.btn:hover{
+		background: #808080;
+		color: #fff;
+	}
+	</style>
+
+</head>
+<body>
+	<div class='nav flex row'>
+		<div class="hide">toggle</div>
+		<div class="slide">slideToggle</div>
+		<div class="fade">fadeToggle</div>
+	</div>
+	<div class="login flex col">
+		<div class='login-item flex row'>
+			<div>userName</div>
+			<input type="text" placeholder='name here' maxlength="8">
+		</div>
+		<div class='login-item flex row'>
+			<div>passWord</div>
+			<input type="password">
+		</div>
+		<div class='login-item btn'>Login</div>
+	</div>
+	
+
+	
+
+	
+	<script>
+	$(document).ready(function(){
+
+		$('.nav .hide').click(function(){
+			$('.login').toggle();
+		})
+		$('.nav .slide').click(function(){
+			$('.login').slideToggle();
+		})
+		$('.nav .fade').click(function(){
+			$('.login').fadeToggle();
+		})
+
+		
+		
+	});
+	
+	</script>
+</body>
+</html>

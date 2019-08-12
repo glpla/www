@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>elastic</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .ball {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #f40;
+      position: absolute;
+      top: 40px;
+      left: 590px;
+    }
+
+    .bar-left,
+    .bar-right {
+      width: 1px;
+      height: 100px;
+      background-color: #333;
+      position: absolute;
+      top: 40px;
+    }
+
+    .bar-left {
+      left: 400px;
+    }
+
+    .bar-right {
+      left: 1080px;
+    }
+
+    p {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <p>0</p>
+  <div class="ball"></div>
+  <div class="bar-left"></div>
+  <div class="bar-right"></div>
+  <script>
+    window.onload = function () {
+      let oBall = document.querySelector('.ball'),
+        oBar = document.querySelector('.bar'),
+        oP = document.querySelector('p'),
+        speed = 7,
+        borderRight = 980,
+        borderLeft = 400,
+        inter = setInterval(move, 10);
+        // 核心:最后一次加上步进,如果大于边界,就直接设置其位置为边界值
+
+      function moving() {
+        if (oBall.offsetLeft + speed > borderRight) {
+          oBall.offsetLeft = borderRight;
+          speed *= -0.8;
+        } else if (oBall.offsetLeft + speed < borderLeft) {
+          oBall.offsetLeft = borderLeft;
+          speed *= -0.8;
+        }
+
+        oP.innerHTML = Math.abs(speed).toFixed(2);
+        oBall.style.left = oBall.offsetLeft + speed + 'px';
+      }
+
+      function move() {
+        let left = oBall.offsetLeft + speed;
+        if (left > borderRight) {
+          left = borderRight;
+          speed *= -0.8
+        } else if (left < borderLeft) {
+          left = borderLeft;
+          speed *= -0.8
+        }
+
+        oP.innerHTML = Math.abs(speed).toFixed(2);
+        oBall.style.left = left + 'px';
+
+
+      }
+
+    }
+  </script>
+</body>
+
+</html>

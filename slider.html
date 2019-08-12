@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>slider</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    background-color: #999;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul li {
+    float: left;
+  }
+
+  #box {
+    position: relative;
+    overflow: hidden;
+    width: 400px;
+    height: 300px;
+    margin: 10px auto;
+    border: 1px solid #f40;
+  }
+
+  #imgBox {
+    position: absolute;
+    width: 3200px;
+    top: 0;
+    left: 0;
+  }
+
+  #imgBox li {
+    width: 400px;
+    /* height: 300px; */
+    background-color: #f40;
+  }
+
+  img {
+    vertical-align: middle;
+    width: 100%;
+  }
+</style>
+
+
+<body>
+
+  <div id="box">
+    <ul id='imgBox'>
+      <li><img src="img/rou0.jpg" alt=""></li>
+      <li><img src="img/rou1.jpg" alt=""></li>
+      <li><img src="img/rou2.jpg" alt=""></li>
+      <li><img src="img/rou3.jpg" alt=""></li>
+      <li><img src="img/rou0.jpg" alt=""></li>
+      <li><img src="img/rou1.jpg" alt=""></li>
+      <li><img src="img/rou2.jpg" alt=""></li>
+      <li><img src="img/rou3.jpg" alt=""></li>
+    </ul>
+  </div>
+
+
+  <script>
+    window.onload = function () {
+      let oImgBox = document.getElementById('imgBox'),
+        speed = 10;
+      inter = setInterval(slider, 50);
+
+      function slider() {
+        if (oImgBox.offsetLeft <= -oImgBox.offsetWidth / 2) {
+          oImgBox.style.left = 0;
+        }
+        oImgBox.style.left = oImgBox.offsetLeft - speed + 'px';
+
+      }
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

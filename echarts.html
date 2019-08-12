@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>echarts DEMO</title>
+    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+    <script src="./js/echarts.js"></script>
+    <style>
+        body {
+            /*background: #2c343c;*/
+        }
+
+        #main {
+            width: 800px;
+            height: 600px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main"></div>
+
+    <script>
+        // let data=[{'1','3','5','7','9'},{'0','2','4','6','8'}];
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        let optionBar = {
+            color: ['#709', '#f40'],
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data: ['销量']
+            },
+            xAxis: {
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                // pie
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+        let optionPie = {
+            // global attr
+            backgroundColor: '#cccccc',
+            title: {
+                text: "Default Text {a|HOME} {d||} {b|INFO} {d||} {c|WORK}",
+                subtext: '2018.09.05',
+                top: 0,
+                left: 'center',
+                textStyle: {
+                    rich: {
+                        a: {
+                            color: '#079',
+                            fontSize: '20'
+                        },
+                        b: {
+                            color: '#f40',
+                            fontSize: '20'
+                        },
+                        c: {
+                            color: '#907',
+                            fontSize: '20'
+                        },
+                        d: {
+                            color: '#ddd',
+                            fontSize: '16'
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                triggle: 'item',
+                // a:name;b:data.name;c:data.value;
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            visualMap: {
+                show: false,
+                min: 80,
+                max: 600,
+                inRange: {
+                    colorLightness: [0, 1]
+                }
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                y: 'center',
+                data: ['视频广告', '联盟广告', '邮件营销', '直接访问', '搜索引擎']
+            },
+            // needed----------------------必须---------
+            series: [{
+                name: '详细信息',
+                type: 'pie',
+                // 显示的范围
+                radius: ['30%', '70%'],
+                // 显示的位置
+                center: ['50%', '50%'],
+                // label居中显示
+                avoidLabelOverlap: false,
+                data: [{
+                        value: 235,
+                        name: '视频广告'
+                    },
+                    {
+                        value: 274,
+                        name: '联盟广告'
+                    },
+                    {
+                        value: 310,
+                        name: '邮件营销'
+                    },
+                    {
+                        value: 335,
+                        name: '直接访问'
+                    },
+                    {
+                        value: 400,
+                        name: '搜索引擎'
+                    }
+                ],
+                // needed------------------必须---------
+                roseType: 'pie',
+                // normal:普通样式
+                // 标签文本
+                label: {
+                    show: true,
+                    // position:'center',
+                    color: 'rgba(33, 33, 33, 0.3)'
+                },
+                // 线条
+                labelLine: {
+                    lineStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                },
+                // 每一块:所有快显示的都是一样的.可以在data的数据对象中单独设置
+                // 如追加:itemStyle: {color: '#c23531'}值对
+                itemStyle: {
+                    // color: '#c23531',
+                    shadowBlur: 100,
+                    // shadowOffsetX: 50,
+                    // shadowOffsetY: 50,
+                    shadowColor: 'rgba(0, 0, 0, 0.3)'
+                },
+                // emphasis:高亮样式
+                emphasis: {
+                    label: {
+                        show: true,
+                        color: 'rgba(255, 255, 255, 1)',
+                        fontSize: '30'
+                    },
+                    labelLine: {
+                        lineStyle: {
+                            color: 'rgba(255, 255, 255, 1)'
+                        }
+                    },
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    },
+                },
+                // 展示出来的效果
+                animationType: 'scale',
+                animationEasing: 'elasticOut'
+            }]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(optionPie);
+    </script>
+</body>
+
+</html>

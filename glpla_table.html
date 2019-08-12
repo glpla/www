@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name='keywords' content="test 测试">
+  <meta name='description' content="demo from glpla.">
+  <title>js demo</title>
+  <link rel="icon" href="img/glpla.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="css/init.css">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src='js/vue.js'></script>
+</head>
+<style class='my_style'>
+  #app {
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    /* border: 1px solid #666; */
+  }
+
+  .table caption {
+    padding: 1em 0;
+    font-weight: 700;
+    font-size: 1.2em;
+    caption-side: bottom;
+  }
+
+  .table tr {
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.1em 1em;
+    /* border: 1px solid #444; */
+  }
+
+  .table thead tr {
+    background: rgba(185, 226, 241, 0.6);
+  }
+
+  .table tbody tr:nth-child(odd) {
+    background: rgba(185, 226, 241, 0.2);
+  }
+
+  .table tbody tr:nth-child(even) {
+    background: rgba(185, 226, 241, 0.6);
+  }
+
+  .table tbody tr:hover {
+    background: rgba(169, 202, 18, 0.2);
+  }
+</style>
+
+
+<body>
+  <div id='app' class='w'>
+    <p>table with css</p>
+    <table cellspacing='0' class='table'>
+      <caption>this is table demo</caption>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>age</th>
+          <th>gender</th>
+          <th>unit</th>
+          <th>cellphone</th>
+          <th>other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+          <td>7</td>
+        </tr>
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+    <p>table without css</p>
+    <table cellspacing=1 bgcolor='#f06' width=100%>
+      <tr bgcolor='#fff' align='center'>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr bgcolor='#fff' align='center'>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr bgcolor='#fff' align='center'>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+    </table>
+  </div>
+
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        sel: function (index) {}
+      }
+    })
+  </script>
+  <script>
+    window.onload = function () {
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

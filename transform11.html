@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js demo</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    background-color: #999;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #tips {
+    width: 780px;
+    padding: 10px;
+    background-color: #e5e5e5;
+    margin: 200px auto 0;
+  }
+
+  .wrap {
+    width: 120px;
+    height: 170px;
+    margin: 100px auto;
+    perspective: 800px;
+    border: 1px solid #fff;
+  }
+
+  #box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url(img/logo.jpg);
+    background-size: 100% 100%;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg);
+  }
+
+  img {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 16px #f40;
+    border-radius: 8px;
+    -webkit-box-reflect: below 12px -webkit-linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 100%);
+    cursor: pointer;
+  }
+
+  .plate {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    margin-left: -400px;
+    margin-top: -300px;
+    background: -webkit-radial-gradient(center center, 400px 400px, rgba(0, 0, 0, .6), rgba(0, 77, 99, 0));
+    transform: rotateX(90deg);
+  }
+</style>
+
+
+<body>
+  <div class="wrap">
+    <div id='box'>
+      <img src="img/nav0.jpg" alt="">
+      <img src="img/nav1.jpg" alt="">
+      <img src="img/nav2.jpg" alt="">
+      <img src="img/nav3.jpg" alt="">
+      <img src="img/nav4.jpg" alt="">
+      <img src="img/nav5.jpg" alt="">
+      <img src="img/nav6.jpg" alt="">
+      <div class="plate"></div>
+    </div>
+  </div>
+  <div id="tips">
+    <h3>tips</h3>
+    <p>利用鼠标移动过程中的初始和结束得到的差进行旋转;</p>
+    <p>没有直接把差值给转动,而是利用roX和roY(差值乘以一个系数),可保证转动不至于太快;由于转动的角度是累计的,所以这二个值应该是全局的;</p>
+    <p>图象出场的动画延迟顺序:可先出先到,也可以先出后到.指定transition的延迟即可:(len-1-i)/8+'s'或i/8+'s';</p>
+    <p>图象的倒影css:-webkit-box-reflect: below 12px -webkit-linear-gradient(rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 1) 100%);
+    </p>
+    <p>底盘的水平垂直居中利用了50%和负的margin实现.也可以用translate.但是尽量用传统的方法;</p>
+    <p>底盘的径向渐变css:background: -webkit-radial-gradient(center center, 400px 400px, rgba(0, 0, 0, .6), rgba(0, 77, 99,
+      0));
+      transform: rotateX(90deg);</p>
+    <p>onmouseup可简单的清除onmousemove为null;也可加入停止拖动后的缓动.</p>
+    <p>缓动由定时器实现.在diff的基础上,不断乘以一个小于0的因子;如果达到某一临界点,如小于0.5(一般需要用绝对值),则清除定时器;</p>
+    <p>事件最好加在单独的wrap上.如加在document上,可能影响其他DOM元素的操作,比如选取文字;</p>
+  </div>
+
+  <script src="js/mine.js"></script>
+  <script>
+    window.onload = function () {
+      let oWrap = document.getElementsByClassName('wrap')[0],
+        oBox = document.getElementById('box'),
+        imgs = oBox.getElementsByTagName('img'),
+        len = imgs.length,
+        seg = 360 / len,
+        curX, curY,
+        lastX, lastY,
+        diffX,
+        diffY,
+        roX = -20,
+        roY = 0,
+        inter = 0;
+
+
+      for (let i = 0; i < len; i++) {
+        imgs[i].style.transform = 'rotateY(' + i * seg + 'deg) translateZ(280px)';
+        imgs[i].style.transition = 'transform 1s ' + (len - 1 - i) / 8 + 's';
+      }
+
+      document.onmousedown = function (event) {
+        clearInterval(inter);
+        let e = event || window.event;
+        lastX = easeStartX = e.clientX;
+        lastY = easeStartY = e.clientY;
+        this.onmousemove = function (event) {
+          clearInterval(inter);
+          let e = event || window.event;
+          curX = e.clientX;
+          curY = e.clientY;
+          diffY = curY - lastY;
+          diffX = curX - lastX;
+          roX -= diffY * 0.2;
+          roY += diffX * 0.2;
+          oBox.style.transform = 'rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)';
+          lastX = curX;
+          lastY = curY;
+        }
+        this.onmouseup = function (event) {
+          clearInterval(inter);
+          this.onmousemove = null;
+          inter = setInterval(fade, 30);
+        }
+        return false;
+      }
+
+      function fade() {
+        diffX *= 0.8;
+        diffY *= 0.8;
+        roX -= diffY * 0.8;
+        roY += diffX * 0.8;
+        console.log(roX + '-' + roY);
+
+        if (Math.abs(roY) < 0.05 || Math.abs(roX) < 0.05) {
+          clearInterval(inter);
+        } else {
+          oBox.style.transform = 'rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)';
+        }
+      }
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>background</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
+  <!-- <script src='js/vue.js'></script> -->
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    /* background: #333 url(img/bg.jpg); */
+    z-index: -99;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #transparent-border {
+    width: 800px;
+    height: 600px;
+    padding: 10px;
+    border: 20px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2) url(img/body.jpg) no-repeat bottom right;
+    background-position: calc(100% - 20px) calc(100% - 10px);
+    background-clip: padding-box;
+    background-origin: padding-box;
+    margin: 20px auto;
+  }
+
+  #inner-round {
+    width: 800px;
+    height: 200px;
+    padding: 10px;
+    margin: 20px auto;
+    background: #f06;
+    border-radius: .8em;
+    box-shadow: 0 0 0 .3em #655;
+    outline: 1em solid #655;
+  }
+
+  .linear-color {
+    width: 800px;
+    height: 120px;
+    margin: 20px auto;
+    background: rgba(255, 0, 0, 0.5);
+    background-image: linear-gradient(90deg, #fff 10px, transparent 10px), linear-gradient(0deg, #fff 10px, transparent 10px);
+    background-size: 20px 20px;
+  }
+
+  .border-img {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .border-img div {
+    width: 180px;
+    height: 100px;
+    margin: 10px;
+    background-color: #f06;
+  }
+
+  .border-img div:nth-child(1) {
+    border-radius: 50%/100% 100% 0% 0%;
+  }
+
+  .border-img div:nth-child(2) {
+    border-radius: 50%/0 0 100% 100%;
+  }
+
+  .border-img div:nth-child(3) {
+    border-radius: 0% 100% 100% 0%/50%;
+  }
+
+  .border-img div:nth-child(4) {
+    border-radius: 100% 0% 0% 100%/50%;
+  }
+
+  /* 由于这四个角的半径在水平和垂直方向上都是相同的，我们甚至都不需要使用斜杠语法了  */
+  .border-img div:nth-child(5) {
+    border-radius: 100% 0% 0% 0%;
+  }
+
+  .border-img div:nth-child(6) {
+    border-radius: 0% 100% 0% 0%;
+  }
+
+  .border-img div:nth-child(7) {
+    border-radius: 0% 0% 100% 0%;
+  }
+
+  .border-img div:nth-child(8) {
+    border-radius: 0% 0% 0% 100%;
+  }
+
+  .tran {
+    width: 280px;
+    line-height: 30px;
+    background-color: #f06;
+    margin: 20px auto;
+    transform: skew(-45deg);
+  }
+
+  .tran p {
+    color: #fff;
+    text-align: center;
+    transform: skew(45deg);
+  }
+
+  #tran-nav {
+    width: 840px;
+    height: 50px;
+    margin: 20px auto;
+  }
+
+  #tran-nav .tran-before {
+    float: left;
+    position: relative;
+    padding: 10px;
+    width: 120px;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+  }
+
+  #tran-nav .tran-before::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f06;
+    z-index: -1;
+    transform: skew(-45deg);
+  }
+
+  #tran-nav .tran-before:hover:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f86;
+    z-index: -1;
+    transform: skew(-45deg);
+  }
+
+  .tran-img {
+    width: 320px;
+    height: 320px;
+    border: 4px solid #666;
+    transform: rotateZ(45deg);
+    overflow: hidden;
+  }
+
+  .tran-img img {
+    width: 100%;
+    height: 100%;
+    transform: rotateZ(-45deg) scale(1.414);
+  }
+
+  .ins {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .ins div {
+    width: 100px;
+    height: 40px;
+    background: #f06;
+  }
+
+  .ins div:nth-child(1) {
+    background: linear-gradient(45deg, transparent 15px, #f06 0);
+  }
+
+  .ins div:nth-child(2) {
+    background: linear-gradient(135deg, transparent 15px, #f06 0);
+  }
+
+  .ins div:nth-child(3) {
+    background: linear-gradient(-45deg, transparent 15px, #f06 0);
+  }
+
+  .ins div:nth-child(4) {
+    background: linear-gradient(-135deg, transparent 15px, #f06 0);
+  }
+
+  .ins div:nth-child(5) {
+    background: linear-gradient(225deg, transparent 15px, #f06 0) top, linear-gradient(-45deg, transparent 15px, #f06 0) bottom;
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+  }
+
+  .ins div:nth-child(6) {
+    background: linear-gradient(135deg, transparent 15px, #f06 0) top, linear-gradient(45deg, transparent 15px, #f06 0) bottom;
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+  }
+
+  .ins div:nth-child(7) {
+    background: linear-gradient(225deg, transparent 15px, #f06 0) bottom, linear-gradient(-45deg, transparent 15px, #f06 0) top;
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+  }
+
+  .ins div:nth-child(8) {
+    background: linear-gradient(135deg, transparent 15px, #f06 0) bottom, linear-gradient(45deg, transparent 15px, #f06 0) top;
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+  }
+
+  .ins div:nth-child(9) {
+    background: linear-gradient(135deg, transparent 15px, #f06 0) top left, linear-gradient(45deg, transparent 15px, #f06 0) bottom left,
+      linear-gradient(225deg, transparent 15px, #f06 0) top right, linear-gradient(-45deg, transparent 15px, #f06 0) bottom right;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+  }
+</style>
+
+
+<body>
+  <div id='nav'>
+    <ul id='tran-nav'>
+      <li class='tran-before'>54414</li>
+      <li class='tran-before'>75716</li>
+      <li class='tran-before'>75660</li>
+      <li class='tran-before'>glboy</li>
+      <li class='tran-before'>glpla</li>
+      <li class='tran-before'>cnplaman</li>
+    </ul>
+  </div>
+  <div class="ins">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <!-- <div class="tran-img">
+    <img src="img/rou.jpg" alt="">
+  </div> -->
+  <div class="border-img">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="linear-color">asdfasdf</div>
+  <div id='transparent-border'>
+    <p>透明边框</p>
+    <ol>
+      <li>背景透明:正常使用rbga()指定即可.这里采用不透明alpha为1</li>
+      <li>背景小图:通常会考虑新建图片层,使用定位布局.这里我们采用background复合属性.其中:
+        <ul>
+          <li>background-position 是以 padding box 为基准,这样边框才不会遮住背景图片.默认为topleft,即padding box 的左上角</li>
+          <li>background-origin: content-box,指定小图从哪里开始平铺:从padding开始还是从content开始,或从border开始</li>
+        </ul>
+      </li>
+      <li>边框透明:默认情况下,背景会延伸到边框下,所以要指定background-clip: padding-box.可以保证小图和文本是对齐的.注意:这个属性要放在最后.</li>
+      <li>完整css为:
+        <ul>
+          <li>width: 800px;</li>
+          <li>height: 600px;</li>
+          <li>padding: 10px;</li>
+          <li>margin: 20px auto;</li>
+          <li>background: rgba(255, 255, 255, 1) url(img/body.jpg) no-repeat bottom right;</li>
+          <li>border: 20px solid rgba(255, 255, 255, 0.2);</li>
+          <li>background-clip: padding-box;</li>
+          <li>background-origin: content-box;</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+  <div id="inner-round"></div>
+  <script>
+    window.onload = function () {
+      let oNav = document.getElementById('tran-nav'),
+        oLi = oNav.children;
+      for (let i = 0; i < oLi.length; i++) {
+        oLi[i].onmouseover = function () {
+          console.log(i);
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

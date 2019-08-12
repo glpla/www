@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js demo</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    background-color: #999;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #box {
+    width: 1000px;
+    height: 300px;
+    margin: 100px auto;
+    position: relative;
+  }
+
+  #page {
+    width: 1000px;
+    height: 300px;
+    perspective: 800px;
+  }
+
+  #page li {
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 300px;
+    transform-style: preserve-3d;
+  }
+
+  #page li:nth-child(1) {
+    transition: all 1s ease;
+  }
+
+  #page li:nth-child(2) {
+    transition: all 1.4s ease;
+  }
+
+  #page li:nth-child(3) {
+    transition: all 1.7s ease;
+  }
+
+  #page li:nth-child(4) {
+    z-index: -1;
+    transition: all 1.9s ease;
+  }
+
+  #page li:nth-child(5) {
+    z-index: -2;
+    transition: all 2s ease;
+  }
+
+  #page li div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 300px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform-style: preserve-3d;
+  }
+
+  #page li div:nth-child(1) {
+    background-image: url(img/01.jpeg);
+  }
+
+  #page li div:nth-child(2) {
+    background-image: url(img/02.jpeg);
+  }
+
+  #page li div:nth-child(3) {
+    background-image: url(img/03.jpeg);
+  }
+
+  #page li div:nth-child(4) {
+    background-image: url(img/04.jpeg);
+  }
+
+  #page li div:nth-child(5) {
+    background-image: url(img/05.jpeg);
+  }
+
+  #page li:nth-child(1) div {
+    background-position: 0px;
+  }
+
+  #page li:nth-child(2) div {
+    background-position: -200px;
+  }
+
+  #page li:nth-child(3) div {
+    background-position: -400px;
+  }
+
+  #page li:nth-child(4) div {
+    background-position: -600px;
+  }
+
+  #page li:nth-child(5) div {
+    background-position: -800px;
+  }
+
+  #page li div:nth-child(1) {
+    transform: translateZ(-150px) rotateX(180deg);
+  }
+
+  #page li div:nth-child(2) {
+    transform: translateY(150px) rotateX(-90deg);
+  }
+
+  #page li div:nth-child(3) {
+    transform: translateY(-150px) rotateX(90deg);
+  }
+
+  #page li div:nth-child(4) {
+    transform: translateZ(150px);
+  }
+
+  #dot {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  #dot li {
+    float: left;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    background-color: #333;
+    margin: 4px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  #dot li.on {
+    background-color: #ddd;
+    color: #333;
+  }
+</style>
+
+
+<body>
+  <div id='box'>
+    <ul id='page'>
+      <li>
+        <div>Back</div>
+        <div>Top</div>
+        <div>Bottom</div>
+        <div>Front</div>
+      </li>
+      <li>
+        <div>Back</div>
+        <div>Top</div>
+        <div>Bottom</div>
+        <div>Front</div>
+      </li>
+      <li>
+        <div>Back</div>
+        <div>Top</div>
+        <div>Bottom</div>
+        <div>Front</div>
+      </li>
+      <li>
+        <div>Back</div>
+        <div>Top</div>
+        <div>Bottom</div>
+        <div>Front</div>
+      </li>
+      <li>
+        <div>Back</div>
+        <div>Top</div>
+        <div>Bottom</div>
+        <div>Front</div>
+      </li>
+    </ul>
+    <ol id='dot'>
+      <li class='on'>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ol>
+  </div>
+
+  <script src="js/mine.js"></script>
+  <script>
+    window.onload = function () {
+      let oDot = document.getElementById('dot'),
+        oPage = document.getElementById('page'),
+        oSide = oPage.getElementsByTagName('li'),
+        oList = oDot.getElementsByTagName('li');
+      for (let i = 0; i < oList.length; i++) {
+        oList[i].onclick = function () {
+          for (let j = 0; j < oSide.length; j++) {
+            oSide[j].style.transform = 'rotateX(-' + (i * 90) + 'deg)';
+          }
+          for (let j = 0; j < oList.length; j++) {
+            oList[j].className = '';
+          }
+          this.className = 'on';
+        }
+      }
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

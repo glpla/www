@@ -1,0 +1,153 @@
+<html>
+<head>	
+	<title>table</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+		outline: none;
+		border: none;
+	}
+	html,body{
+		height: 100%;
+	}
+	.title{
+		width: 800px;
+		height: 90px;
+		line-height: 90px;
+		margin: 10px auto;
+		background: #ccc;
+	}
+	strong{
+		width: 60px;
+		background: #FF7F50;
+		color: #fff;
+		border-radius: 50%;
+	}
+	.form{
+		width: 798px;
+		height: 32px;
+		line-height: 32px;
+		margin: 10px auto;
+		display: flex;
+		flex-direction:row;
+		color: #888;
+	}	
+	input{
+		width: 220px;
+		font-size: 16px;
+		padding: 0px 10px;
+		border:1px solid #ddd;
+		border-radius:15px; 
+		margin-left: 10px;
+	}
+	input:focus{
+		box-shadow: 0px 0px 5px rgba(103, 166, 217, 1);
+	}
+	.btn{
+		width: 60px;
+		height: 30px;
+		border:1px solid #ddd;
+		border-radius:15px;
+		margin-left: 10px;
+		color: #808080;
+		font-size: 14px;
+	}
+	.btn:hover{
+		box-shadow: 0px 0px 5px rgba(103, 166, 217, 1);
+		color: #333;
+	}	
+	.tbl{
+		width: 800px;
+		text-align: center;
+		margin: 20px auto;
+		color: #808080;
+		font-size: 14px;
+	}	
+	td,th{
+		width: 150px;
+		height: 32px;
+		padding: 5px;
+	}
+	th{
+		font-weight: bold;
+		background: #72c0d8;
+		color: #fff;
+	}
+	td{
+		background: #ceefff;
+	}
+
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div class="title">
+			<h1>BT's resume <strong>{{info.length}}</strong></h1>			
+		</div>
+		<form action="#" class="form">
+			<label for="pro">Please input here.</label>
+			<input id="pro" class="input" type="text" v-model='proStr' placeholder="pla input your info">
+			<button class="btn" v-on:click="addItem">Add</button>
+		</form>
+		<table class="tbl">
+			<thead>
+				<tr>					
+					<th>{{tableTitle[0]}}</th>
+					<th>{{tableTitle[1]}}</th>
+					<th>{{tableTitle[2]}}</th>
+					<th>del</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<tr v-for="(item,index) in info">
+					<td>{{item.name}}</td>
+					<td>{{item.unit}}</td>
+					<td>{{item.state}}</td>
+					<td><button class="btn" v-on:click="delItem">del</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script>
+	window.onload=function(){
+		let vm=new Vue({
+			el:"#wrapper",
+			data:{
+				bool:true,
+				proStr:"glpla",				
+				tableTitle:["Name","Unit","State","Del"],
+				info:[
+				{name:"glpla",unit:"54414",state:0},
+				{name:"glboy",unit:"75716",state:1},
+				{name:"cnplaman",unit:"75660",state:2},
+				{name:"BT",unit:"54414",state:1}
+				]
+			},
+			methods:{
+				addItem:function(){
+					if(this.proStr.length>0){
+						this.info.unshift({name:this.proStr,unit:"54414",state:0});
+					}
+				},
+				delItem:function(index){
+					// index是位置,1是个数
+					this.info.splice(index,1);
+				}
+			},
+			computed:{
+				greeting:function(){
+					console.log("greeting from computed.")
+				}
+			}
+		})
+	}	
+	
+	</script>
+</body>
+</html>

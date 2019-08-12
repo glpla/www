@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>	
+	<title>lazy loading</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+		outline: none;
+		border: none;
+		font-family: "Hiragino Sans GB W3","微软雅黑";
+	}	
+	.wrapper{		
+		width: 100%;
+		height: 100%;
+		background: #008080;
+	}
+	.txt-input{
+		position: fixed;
+		width: 100%;
+		left: 0px;
+		bottom: 10px;		
+		display: flex;
+		justify-content:center;
+	}
+	.txt-input input{
+		width: 360px;	
+		height: 30px;
+		line-height: 30px;	
+		padding: 0px 5px;
+		font-size: 14px;
+	}
+	.txt-input div{
+		width: 120px;
+		height: 30px;
+		line-height: 30px;
+		background: #f40;
+		cursor: pointer;
+		font-size: 14px;
+		text-align: center;
+		font-weight: bold;
+		color: #fff;		
+	}
+	img{
+		width: 800px;
+		height:600px;
+	}
+	</style>
+</head>
+<body>
+	<div id="app" class="wrapper flex">
+		<div>{{txt}}</div>
+		<div class='txt-input'>
+			<input type="text">
+			<div>发送弹幕</div>
+		</div>
+		<img alt="" data-original="img/bg0.jpg" src="img/loading.gif"/>
+		<img alt="" data-original="img/bg1.jpg" src="img/loading.gif"/>
+		<img alt="" data-original="img/bg2.jpg" src="img/loading.gif"/>
+		<img alt="" data-original="img/bg3.jpg" src="img/loading.gif"/>
+		<img alt="" data-original="img/bg4.jpg" src="img/loading.gif"/>
+		<img alt="" data-original="img/bg5.jpg" src="img/loading.gif"/>
+		<img alt="" data-original="img/bg6.jpg" src="img/loading.gif"/>
+		<img alt="" data-original="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1535830250916&di=15d2815200d906daced9618fc0062a80&imgtype=0&src=http%3A%2F%2Fsz.a963.com%2Fuploadfile%2F2017%2F0906%2F20170906055300160.jpg" src="img/loading.gif"/>
+	</div>
+	
+	<script>
+	window.onload=function(){
+		let hh=document.documentElement.clientHeight;
+		let ww=document.documentElement.clientWidth;
+		// console.log(ww+":"+hh);
+		let inp=document.querySelector('.txt-input');
+		console.log("inp:"+inp.offsetWidth+"-"+inp.offsetHeight);
+		// console.log(window.innerHeight+":"+window.innerWidth);
+		// console.log(window.outerHeight+":"+window.outerWidth);
+		$(function() {
+			$("img").lazyload({
+				effect : "fadeIn"
+			});
+		});
+		let vm=new Vue({
+			el:"#app",
+			data:{
+				title:["name","gender","age"],
+				info:{name:"glpla",gender:"male",age:42},
+				pro:[
+				{
+					addr:"nanjing",
+					type:"1-3",
+					date:2009
+				},{
+					addr:"guilin",
+					type:"2-1",
+					date:2017
+				},
+				{
+					addr:"guangzhou",
+					type:"2-2",
+					date:2018
+				}]
+			},
+			methods:{
+
+
+			},
+			computed:{
+				txt:function(){					
+					for (item in this.pro) {
+						console.log(item);
+						console.log(this.pro[item]);
+					};
+				}
+			}
+		})
+	}
+	
+	
+	</script>
+</body>
+</html>

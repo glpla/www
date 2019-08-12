@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js demo</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<style class='my_style'>
+  html,
+  body {
+    margin: 0;
+    background-color: #999;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #box {
+    width: 940px;
+    height: 360px;
+    margin: 100px auto;
+    background-color: #fff;
+    overflow: hidden;
+  }
+
+  #box ul {
+    width: 1000%;
+  }
+
+  #box ul li {
+    position: relative;
+    box-sizing: border-box;
+    float: left;
+    width: 120px;
+    height: 360px;
+    border-left: 1px solid #fff;
+    transition: all 0.4s linear;
+  }
+
+  #box ul:hover li {
+    width: 50px;
+  }
+
+  #box ul li:hover {
+    width: 640px;
+  }
+
+  img {
+    width: 640px;
+  }
+
+  p.title {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    padding-left: 20px;
+    margin: 0;
+    line-height: 60px;
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: all 0.4s 0.2s linear;
+  }
+
+  #box ul li:hover p.title {
+    bottom: 0px;
+  }
+</style>
+
+
+<body>
+  <div id='box'>
+    <ul>
+      <li><img src="img/rou0.jpg" alt="">
+        <p class='title'>54414</p>
+      </li>
+      <li><img src="img/rou1.jpg" alt="">
+        <p class='title'>75716</p>
+      </li>
+      <li><img src="img/rou2.jpg" alt="">
+        <p class='title'>75660</p>
+      </li>
+      <li><img src="img/rou3.jpg" alt="">
+        <p class='title'>glboy</p>
+      </li>
+      <li><img src="img/rou4.jpg" alt="">
+        <p class='title'>glpla</p>
+      </li>
+      <li><img src="img/rou5.jpg" alt="">
+        <p class='title'>cnplaman</p>
+      </li>
+      <li><img src="img/rou6.jpg" alt="">
+        <p class='title'>sjtu</p>
+      </li>
+    </ul>
+  </div>
+  <div id="box">
+    <h3>tips</h3>
+    <p>ul设置:hover时各li的宽度为50px;</p>
+    <p>li设置:hover时当前宽度为640px;</p>
+    <p>title的上下移动效果可以由bottom或height实现;且它的动画要延迟于li;</p>
+  </div>
+
+  <script src="js/mine.js"></script>
+  <script>
+    window.onload = function () {
+
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

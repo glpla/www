@@ -1,0 +1,129 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		text-decoration: none;
+	}
+	body{
+		background: #eee;
+	}
+	#wrapper{
+		width: 800px;
+		height: 600px;
+		margin: 0 auto;	
+		border: 1px solid #690;
+		position: relative;		
+	}
+	#canvas{
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		margin: auto;
+	}	
+	
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<!-- canvas的属性设置不要放在css里. -->
+		<!-- 切记长宽不要加px -->
+		<canvas id="canvas" width="400" height="300" style="cursor: pointer; border:1px solid #000;"></canvas>
+	</div>
+
+	
+	<script>
+	//step1:定义html结构;
+	//step2:设置css样式(对canvas只做布局调整);
+	//step3:操作js;
+
+	var canvas=document.getElementById('canvas');
+	var ctx=canvas.getContext('2d');
+	ctx.fillStyle="#FF0000";	
+	
+	// ctx.fillRect(0,0,150,75);
+
+	
+	// beginPath()开始一条路径，或重置当前的路径
+	// moveTo()、lineTo()、quadricCurveTo()、bezierCurveTo()、arcTo() 和 arc()
+	// closePath()闭合绘制的路径,如果只画线条,可以不闭合
+	// stroke()描边路径(只有边框,没有填充)
+	// fill()填充路径
+	// 二者可配合使用
+	// ctx.beginPath();
+	// ctx.arc(70,70,30,0,Math.PI*2,true);
+	// ctx.closePath();
+	// ctx.fill();	
+	// ctx.stroke();
+
+	// ctx.beginPath();
+	// ctx.moveTo(10,10);
+	// ctx.lineTo(150,150);
+	// ctx.lineTo(20,150);
+	// ctx.closePath();
+	// ctx.stroke();
+
+	// var img=new Image();
+	// img.src="img/code.png";
+	// ctx.drawImage(img,0,0);
+
+	//二维码
+	draw();
+	canvas.onclick=function(){
+		draw();
+	}
+	function draw(){
+		//每次绘制前先清空画布;
+		clearCanvas();
+		//绘制填充颜色随机的矩形;
+		ctx.fillStyle=randColor(170,250);
+		ctx.fillRect(0, 0,120,30);
+		var data="123456789abcdefghijklmnopkrstuvwxyz";
+		var len=data.length;
+		// 绘制文本:字符随机,颜色随机,大小随机,位置随机(实心/空心);
+		for (var i = 0; i <= 90; i+=30) {
+			var char=data[randNum(0,len-1)];
+			ctx.fillStyle=randColor(60,160);
+			ctx.font=randNum(15,40)+'px SimHei';
+			//ctx.fillText(char,i+randNum(0,15),randNum(15,30));
+			 ctx.strokeText(char,i+randNum(0,15),randNum(15,30))
+
+		};
+		// 绘制笔触颜色随机的线条
+		for (var i = 0; i < 10; i++) {
+			ctx.beginPath();
+			ctx.moveTo(randNum(0,120),randNum(0,120));
+			ctx.lineTo(randNum(0,120),randNum(0,120));
+			ctx.strokeStyle=randColor(60,160);
+			ctx.stroke();
+		};
+		// draw circle
+		for (var i = 0; i < 10; i++) {
+			ctx.beginPath();
+			ctx.arc(randNum(0,120),randNum(0,30),randNum(1,4),0,Math.PI*2);
+			ctx.strokeStyle=randColor(60,160);
+			ctx.stroke();
+		};
+	}
+	function randNum(min,max){
+		var num=Math.floor( Math.random()*(max-min)+min);
+		return num;
+	}
+	function randColor(min,max){
+		var r=Math.floor( Math.random()*(max-min)+min);
+		var g=Math.floor( Math.random()*(max-min)+min);
+		var b=Math.floor( Math.random()*(max-min)+min);
+		return 'rgb('+r+','+g+','+b+')';
+	}
+	function clearCanvas(){
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+	}
+	</script>
+</body>
+</html>

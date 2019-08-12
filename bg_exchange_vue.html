@@ -1,0 +1,133 @@
+<html>
+
+<head>
+	<title>bg exchange-Vue</title>
+	<meta charset="utf-8">
+	<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+			text-decoration: none;
+			list-style: none;
+		}
+
+		.wrapper {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			/*background-size: contain;*/
+			/*background-repeat: no-repeat;*/
+			background: url("img/bg0.jpg") no-repeat center/cover;
+			transition: 1s;
+		}
+
+		.nav {
+			position: absolute;
+			left: 0px;
+			width: 100%;
+			height: 30px;
+		}
+
+		.nav .nav-btn {
+			display: block;
+			width: 100%;
+			height: 30px;
+			background: rgba(255, 255, 255, 0.2);
+			text-align: center;
+			line-height: 30px;
+			color: #ccc;
+		}
+
+		.nav .nav-btn:hover {
+			background: rgba(255, 255, 255, 0.6);
+			color: #333;
+		}
+
+		.abre {
+			position: absolute;
+			left: 0px;
+			width: 100%;
+			height: 200px;
+			background: rgba(255, 255, 255, 0.2);
+			/*felx layout*/
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			/*增加过渡效果*/
+			transition: all ease 0.5s;
+		}
+
+		.abre .img-wrap {
+			width: 100px;
+			height: 100px;
+			border: 4px solid #fff;
+			border-radius: 50%;
+			overflow: hidden;
+		}
+
+		.abre .img-wrap .img {
+			width: 100%;
+			height: 100%
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app" class="wrapper" v-bind:style="{backgroundImage:'url('+curImg+')'}" v-on:click.capture="hideNav">
+		<div class="nav" v-on:click="navClick" v-bind:style="{top:navTop+'px'}">
+			<a class="nav-btn" href="#">{{txtTips}}</a>
+		</div>
+		<ul class="abre" v-bind:style="{top:abreTop+'px'}" v-on:click.capture="hideNav">
+			<li class="img-wrap" v-for="(item,index) in src">
+				<img class="img" v-bind:src="item" alt="" v-on:click="selBgImg">
+			</li>
+		</ul>
+
+	</div>
+	<script>
+		let vm = new Vue({
+			el: "#app",
+			data: {
+				txtTips: "点击换肤",
+				abreTop: -200,
+				navTop: 0,
+				src: [
+					"img/bg0.jpg",
+					"img/bg1.jpg",
+					"img/bg2.jpg",
+					"img/bg3.jpg",
+					"img/bg4.jpg"
+				],
+				curImg: "img/bg0.jpg"
+			},
+			created() {
+				let ls = window.localStorage.getItem('bg') || 'img/bg0.jpg';
+				this.curImg = ls;
+			},
+			methods: {
+				navClick: function () {
+					this.abreTop = 0;
+					this.navTop = -30;
+				},
+				hideNav: function () {
+					this.abreTop = -200;
+					this.navTop = 0;
+				},
+				selBgImg: function (e) {
+					console.log(e.target.attributes['src'].value);
+					let tmp = e.target.attributes['src'].value;
+					this.curImg = tmp;
+					this.abreTop = -200;
+					this.navTop = 0;
+					window.localStorage.setItem('bg', tmp);
+				}
+
+			}
+		})
+	</script>
+</body>
+
+</html>

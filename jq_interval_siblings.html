@@ -1,0 +1,65 @@
+<html>
+<head>	
+	<title>setInterval-siblings</title>
+	<meta charset="utf-8">
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+	}	
+	.jqWrapper{
+		position: relative;
+		width: 800px;
+		height: 600px;
+		margin: 20px auto;
+		background: #f40;
+	}
+	.jqPic{
+		position: absolute;	
+		top: 0px;
+		left: 0px;	
+		width: 100%;
+		height: 100%;
+	}
+	.jqPic img{
+		width: 100%;
+		height: 100%;
+	}
+	</style>
+</head>
+<body>	
+	<div class="jqWrapper">
+		<div class="jqPic"><img src="img/bg1.jpg" alt=""></div>
+		<div class="jqPic"><img src="img/bg2.jpg" alt=""></div>
+		<div class="jqPic"><img src="img/bg3.jpg" alt=""></div>
+		<div class="jqPic"><img src="img/bg4.jpg" alt=""></div>
+		<div class="jqPic"><img src="img/bg5.jpg" alt=""></div>
+	</div>
+
+
+
+
+	
+	<script>
+	$(document).ready(function(){
+		
+		
+		var len=$('.jqPic').length;
+		$('.jqPic:eq(0)').fadeIn().siblings().fadeOut();
+		var num=0;
+		var inter=setInterval(function(){
+			num++;
+			num=num%len;
+			$('.jqPic:eq('+num+')').fadeIn().siblings().fadeOut();
+		},2000)
+
+		
+		
+	});
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>common layout</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .cont {
+      position: relative;
+      width: 100%;
+      height: 130px;
+      margin-top: 20px;
+      /* overflow: hidden; */
+    }
+
+    .pos-left {
+      position: absolute;
+      left: 0px;
+      min-width: 120px;
+      height: 100%;
+      background-color: #f40;
+    }
+
+    .pos-right {
+      position: absolute;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      margin-left: 120px;
+      background-color: #f80;
+    }
+
+    .float-left {
+      float: left;
+      min-width: 120px;
+      height: 100%;
+      background-color: #f40;
+    }
+
+    .float-right {
+      height: 100%;
+      margin-left: 120px;
+      background-color: #f80;
+      overflow: hidden;
+    }
+
+    .flex-cont {
+      display: flex;
+      width: 100%;
+      height: 130px;
+      margin-top: 20px;
+    }
+
+    .flex-cont .left {
+      flex: 0 0 120px;
+      height: 100%;
+      background-color: #f40;
+    }
+
+    .flex-cont .right {
+      flex: 1 1 auto;
+      height: 100%;
+      background-color: #f80;
+    }
+
+    .flex-cont .col-left,
+    .flex-cont .col-right {
+      flex: 0 0 120px;
+      height: 100%;
+      background-color: #f80
+    }
+
+    .flex-cont .col-middle {
+      flex: 1 0 auto;
+      height: 100%;
+      background-color: #f40
+    }
+
+    .flex-cont .eq {
+      flex: 1 0 auto;
+    }
+
+    .flex-cont .eq:nth-child(1) {
+      background-color: #f80;
+    }
+
+    .flex-cont .eq:nth-child(2) {
+      background-color: #f40;
+    }
+
+    .flex-cont .eq:nth-child(3) {
+      background-color: #f80;
+    }
+
+    .flex-cont .eq-1 {
+      flex: 1 0 auto;
+      background-color: #f80;
+    }
+
+    .flex-cont .eq-2 {
+      flex: 2 0 auto;
+      background-color: #f40;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cont">
+    <div class="pos-left">
+      <p>左侧固定</p>
+    </div>
+    <div class="pos-right">
+      <p>采用定位:父相子绝.左侧右侧都设置left:0px;</p>
+      <p>左侧固定大小;右侧需指定和左侧宽度相同的margin-left;</p>
+      <p>优点是不用考虑塌陷的问题和清除浮动的问题;</p>
+    </div>
+  </div>
+  <div class="cont">
+    <div class="float-left">
+      <p>左侧固定</p>
+    </div>
+    <div class="float-right">
+      <p>采用float:只需左侧浮动->脱离文档流.右侧顶上来->补左侧的位置,只需指定和左侧宽度相同的margin-left即可.</p>
+      <p>可能出现margin塌陷.建议右侧采用overflow: hidden;消除塌陷.</p>
+      <p>父级根据需要也可设置overflow: hidden;</p>
+    </div>
+  </div>
+  <div class="flex-cont">
+    <div class="left"></div>
+    <div class="right">
+      <p>利用flex:父级指定flex布局.子级:左右分别指定flex属性.</p>
+      <p>flex(复合属性):flex-grow(默认0:有剩余空间也不扩展) flex-shrink(默认1:空间不够时将缩小) flex-basis(auto:自动分配大小)</p>
+      <p>左侧不扩不缩固定大小flex:0 0 120px;右侧要扩要缩自动分配flex:1 1 auto;</p>
+    </div>
+  </div>
+  <div class="flex-cont">
+    <div class="col-left"></div>
+    <div class="col-middle">
+      <p>左侧不扩不缩固定大小flex:0 0 120px;</p>
+      <p>中间要扩要缩自动分配flex:1 0 auto;</p>
+      <p>右侧不扩不缩固定大小flex:0 0 120px;</p>
+    </div>
+    <div class="col-right"></div>
+  </div>
+  <div class="flex-cont">
+    <div class="eq">三等分flex:1 0 auto;</div>
+    <div class="eq">三等分flex:1 0 auto;</div>
+    <div class="eq">三等分flex:1 0 auto;</div>
+  </div>
+  <div class="flex-cont">
+    <div class="eq-1">1/4份flex:1 0 auto;</div>
+    <div class="eq-2">2/4份flex:2 0 auto;</div>
+    <div class="eq-1">1/4份flex:1 0 auto;</div>
+  </div>
+
+
+</body>
+<script>
+  window.onload = window.onresize = function () {
+    let scaleright = document.getElementsByClassName('right')[0];
+    console.log(scaleright.offsetWidth);
+  }
+</script>
+
+</html>

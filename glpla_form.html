@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name='keywords' content="test 测试">
+  <meta name='description' content="demo from glpla.">
+  <title>js demo</title>
+  <link rel="icon" href="img/glpla.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="css/init.css">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src='js/vue.js'></script>
+</head>
+<style class='my_style'>
+  #app {
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  #branding {
+    height: 6em;
+    line-height: 6em;
+    /* background: #f06; */
+  }
+
+  #branding h1 {
+    font-weight: 700;
+  }
+
+  #cont {
+    width: 75%;
+    /* background: #908; */
+    height: 60em;
+    float: right;
+    overflow-y: auto;
+  }
+
+  #cont h1,
+  #cont h3,
+  #cont p {
+    margin-top: 1em;
+  }
+
+  #nav {
+    width: 23%;
+    background: #ddd;
+    height: 60em;
+    float: left;
+  }
+
+  #nav ul {
+    padding-top: 1em;
+  }
+
+  #nav li {
+    padding: 0 1em;
+  }
+
+  #nav li a {
+    display: block;
+    box-sizing: border-box;
+    padding-left: 1em;
+    height: 2em;
+    line-height: 2em;
+    border-bottom: 1px solid #fff;
+  }
+
+  #nav li a:hover {
+    background: #fff;
+    color: #333;
+  }
+
+  #footer {
+    background: #999;
+    clear: both;
+    font-size: 0.8em;
+  }
+
+  #upper {
+    height: 10em;
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #upper .link {
+    box-sizing: border-box;    
+    width: 25%;
+    float: left;
+  }
+
+  #down {
+    text-align: center;
+    height: 6em;
+    padding: 1em 0;
+  }
+</style>
+
+
+<body>
+  <div id='app' class='w'>
+    <div id="branding">
+      <h1>welcome to Glpla.</h1>
+    </div>
+    <div id="cont">
+      <h1>Lorem ipsum dolor sit amet.</h1>
+      <h3>Lorem ipsum dolor sit amet.</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam dolores numquam explicabo! Consectetur
+        recusandae aut, nobis modi aliquid perspiciatis eos corporis reprehenderit earum dolores aliquam distinctio
+        voluptas quod, necessitatibus quibusdam? Enim nostrum optio mollitia magni cum consequuntur alias neque id?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, sapiente?</p>
+      <h3>Lorem ipsum dolor sit amet.</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae velit provident laboriosam quaerat ab
+        cumque pariatur quam distinctio consequuntur totam.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam dolores numquam explicabo! Consectetur
+        recusandae aut, nobis modi aliquid perspiciatis eos corporis reprehenderit earum dolores aliquam distinctio
+        voluptas quod, necessitatibus quibusdam? Enim nostrum optio mollitia magni cum consequuntur alias neque id?</p>
+      <h3>Lorem ipsum dolor sit amet.</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam dolores numquam explicabo! Consectetur
+        recusandae aut, nobis modi aliquid perspiciatis eos corporis reprehenderit earum dolores aliquam distinctio
+        voluptas quod, necessitatibus quibusdam? Enim nostrum optio mollitia magni cum consequuntur alias neque id?</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit mollitia placeat temporibus nihil nemo nostrum.
+      </p>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis, quisquam.</p>
+    </div>
+    <div id="nav">
+      <ul>
+        <li>
+          <a href="javascript:;">54414</a>
+        </li>
+        <li>
+          <a href="javascript:;">glboy</a>
+        </li>
+        <li>
+          <a href="javascript:;">75716</a>
+        </li>
+        <li>
+          <a href="javascript:;">glpla</a>
+        </li>
+        <li>
+          <a href="javascript:;">75660</a>
+        </li>
+        <li>
+          <a href="javascript:;">cnplaman</a>
+        </li>
+        <li>
+          <a href="javascript:;">016474</a>
+        </li>
+        <li>
+          <a href="javascript:;">1942194789</a>
+        </li>
+      </ul>
+    </div>
+    <div id="footer">
+      <div id="upper">
+        <dl class='link'>
+          <dt>glpla</dt>
+          <dd>123</dd>
+          <dd>123</dd>
+          <dd>123</dd>
+          <dd>123</dd>
+        </dl>
+        <dl class='link'>
+          <dt>glpla</dt>
+          <dd>123</dd>
+          <dd>123</dd>
+          <dd>123</dd>
+          <dd>123</dd>
+        </dl>
+        <dl class='link'>
+          <dt>glpla</dt>
+          <dd>123</dd>
+          <dd>123</dd>
+          <dd>123</dd>
+          <dd>123</dd>
+        </dl>
+        <dl class='link'>
+          <dt>glpla</dt>
+          <dd>123</dd>
+          <dd>123</dd>
+          <dd>123</dd>
+          <dd>123</dd>
+        </dl>
+      </div>
+      <div id="down">
+        <p>copyright &copy;2019-</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, tempora.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        sel: function (index) {}
+      }
+    })
+  </script>
+  <script>
+    window.onload = function () {
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>

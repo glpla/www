@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>transform demo</title>
+  <link rel="shortcut icon" href="img/glpla.ico" type="image/x-icon">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/vue.min.js"></script>
+</head>
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: #151515;
+  }
+
+  .wrap {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 40px auto;
+    border: 1px solid #666;
+    /* padding: 10px; */
+  }
+
+  .grid {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    background-size: 100% 100%;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .tmp {
+    border: 1px solid #f40;
+  }
+</style>
+
+<body>
+  <div class="wrap"></div>
+</body>
+<script>
+  window.onload = function () {
+    let sum = 0,
+      grid = new Array(8),
+      oWrap = document.querySelector('.wrap');
+    init();
+
+    function init() {
+      for (let i = 0; i < 8; i++) {
+        grid[i] = new Array(6);
+        for (let j = 0; j < grid[i].length; j++) {
+          grid[i][j] = createGrid(j, i);
+          grid[i][j].addEventListener("click", (e) => {
+            if (grid[i][j].value > -1) {
+              return;
+
+            }
+            console.log(grid[i][j].classList.contains('tmp'));
+            grid[i][j].classList.remove('tmp');
+            let random = sum % 2;
+            grid[i][j].value = random;
+            grid[i][j].style.backgroundImage = "url('./img/rou" + random + ".jpg')";
+            sum++;
+          })
+          oWrap.appendChild(grid[i][j]);
+        }
+      }
+    }
+
+    function createGrid(x, y) {
+      let obj = document.createElement('div');
+      obj.classList.add('grid');
+      // obj.classList.add('tmp');
+      // obj.className = 'grid tmp';
+      obj.style.left = y * 100 + 'px';
+      obj.style.top = x * 100 + 'px';
+      obj.value = -1;
+      return obj;
+    }
+  }
+</script>
+
+</html>

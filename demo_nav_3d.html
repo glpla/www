@@ -1,0 +1,108 @@
+<html>
+<head>	
+	<title>demo</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+		text-decoration: none;
+		list-style: none;
+	}	
+	.nav{
+		width: 430px;
+		height: 40px;
+		background: #ddd;
+		margin: 20px auto;
+	}
+	a{
+		display: block;
+		width: 100px;
+		height: 40px;
+		line-height: 40px;
+		color: #fff;
+		background:#069;
+		text-align: center;
+	}
+	.nav>li{
+		float: left;
+		position: relative;
+		margin-right: 10px;
+		/*父级定义景深*/
+		perspective: 800px;
+	}
+	.nav>li:last-child{
+		margin-right: 0px;
+	}
+	.nav>li a:hover{
+		background-color: #000;
+		font-weight: 700;
+	}	
+	.nav li ul{
+		position: absolute;
+		top: 41px;
+		left: 0px;
+		height: 40px;
+		perspective: 800px;
+	}
+	.nav li ul li{
+		margin-bottom: 1px;
+		transform: rotate3d(0, 1, 0, 90deg);
+		transform-origin: center;
+		transition: transform 1s;		
+	}	
+	</style>
+</head>
+<body>
+	<ul class="nav">
+		<li id="li0">
+			<a href="">简介</a>
+			<ul id="ul0">
+				<li class="li3d"><a href="#">000</a></li>
+				<li class="li3d"><a href="#">010</a></li>
+				<li class="li3d"><a href="#">020</a></li>
+				<li class="li3d"><a href="#">030</a></li>
+			</ul>
+		</li>
+		<li id="li1">
+			<a href="#">产品</a>
+			<ul id="ul1">
+				<li><a href="#">111</a></li>
+				<li><a href="#">111</a></li>
+				<li><a href="#">111</a></li>
+				<li><a href="#">111</a></li>
+			</ul>
+		</li>
+		<li id="li2">
+			<a href="#">联系</a>
+			<ul id="ul2">
+				<li><a href="#">222</a></li>
+				<li><a href="#">222</a></li>
+				<li><a href="#">222</a></li>
+				<li><a href="#">222</a></li>
+			</ul>
+		</li>
+		<li><a href="">培训</a></li>
+	</ul>
+	
+
+	
+	<script>
+	
+	var oLi=document.getElementById('li0');
+	var oUl=document.getElementById('ul0');
+	var oLi3d=oUl.getElementsByClassName('li3d');
+	console.log(oLi3d[0]);
+	
+	oLi.onmouseover=function(){		
+		oLi3d[0].style.transform='rotate3d(0, 1, 0, 0deg)';
+		
+	}
+	oLi.onmouseout=function(){
+		oLi3d[0].style.transform='rotate3d(0, 1, 0, 90deg)';		
+	}
+	
+
+	</script>
+</body>
+</html>

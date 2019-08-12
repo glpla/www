@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name='keywords' content="test 测试">
+  <meta name='description' content="demo from glpla.">
+  <title>target 换肤</title>
+  <link rel="icon" href="img/glpla.ico" type="image/x-icon">
+  <link rel="stylesheet" type="text/css" href="css/init.css">
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src='js/vue.js'></script>
+</head>
+<style class='my_style'>
+  #app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  #app>div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+
+  .img0 {
+    background: url(img/rou0.jpg) no-repeat;
+  }
+
+  .img1 {
+    background: url(img/rou1.jpg) no-repeat;
+  }
+
+  /* 只需要设置一个z-index即可. img0成为锚点目标时才提升层级*/
+  .img0:target {
+    z-index: 2;
+  }
+
+  /* 加上父级可以保证权重,不至于被上面的#app>div优先 */
+  #app .ctrl {
+    position: absolute;
+    bottom: 0;
+    /* 保证控件的层级在最上层 */
+    z-index: 100;
+    width: 100%;
+    height: 40px;
+    /* 内部元素居中:inline或inline-block */
+    text-align: center;
+  }
+
+  .ctrl a {
+    /* 相比block而言,inline-block更方便居中对齐. */
+    display: inline-block;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .ctrl a:hover {
+    background-color: rgba(255, 255, 255, 1);
+  }
+</style>
+
+
+<body>
+  <div id='app'>
+    <div class="img0" id='img0'> </div>
+    <div class="img1" id='img1'> </div>
+    <div class="ctrl">
+      <a href="#img0">0</a>
+      <a href="#img1">1</a>
+
+    </div>
+  </div>
+
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        sel: function (index) {}
+      }
+    })
+  </script>
+  <script>
+    window.onload = function () {
+
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>
